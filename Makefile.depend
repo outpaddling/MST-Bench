@@ -1,0 +1,3 @@
+bench.o: bench.c protos.h
+	${CC} -c ${CFLAGS} bench.c
+
