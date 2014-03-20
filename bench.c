@@ -215,10 +215,10 @@ int     main(int argc, char *argv[])
 	mem_size);
     
     puts("\nMount options:\n");
-    system("mount");
+    system("/sbin/mount");
     
     puts("\nDisk free:\n");
-    system("df");
+    system("/bin/df -h");
     putchar('\n');
     
     for (trial=1; trial<=trials; ++trial)
