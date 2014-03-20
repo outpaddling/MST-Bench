@@ -261,9 +261,6 @@ int     main(int argc, char *argv[])
     report_random(seek, "seek", BLOCK_SIZE);
     report_throughput(read, "read", file_size, 1, BLOCK_SIZE);
     report_throughput(rewrite, "rewrite", file_size, 1, BLOCK_SIZE);
-
-    puts("Press return to quit.");
-    getchar();
     return 0;
 }
 
