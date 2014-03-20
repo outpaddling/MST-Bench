@@ -211,7 +211,15 @@ int     main(int argc, char *argv[])
     /* Overwhelm cache, but don't cause paging */
     array_size = MIN(mem_size * 3 / 4, 512 * MEBI);
     
-    printf("%s %s %s physmem=%lu\n",un.sysname, un.release, un.machine, mem_size);
+    printf("%s %s %s physmem=%lu\n",un.sysname, un.release, un.machine,
+	mem_size);
+    
+    puts("\nMount options:\n");
+    system("mount");
+    
+    puts("\nDisk free:\n");
+    system("df");
+    putchar('\n');
     
     for (trial=1; trial<=trials; ++trial)
     {
