@@ -346,7 +346,11 @@ unsigned long   write_test_low(uint64_t file_size)
 		    milliseconds;
     int             fd;
     static char     buff[BLOCK_SIZE+1];
-    
+
+    srand(time(NULL));
+    for (c = 0; c < BLOCK_SIZE; ++c)
+	buff[c] = random();
+
     /* Test sequential write */
     printf("Performing a %qu mebibyte low-level sequential write...\n",
 	(long long unsigned int)(BLOCK_SIZE * BLOCKS / MEBI));
