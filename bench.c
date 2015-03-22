@@ -122,7 +122,7 @@ typedef int bool;
 #define MEBI            (KIBI*KIBI)
 #define GIBI            (MEBI*KIBI)
 
-#define BLOCK_SIZE      (KIBI*64L)
+#define BLOCK_SIZE      (MEBI*4L)
 #define BLOCKS          (file_size/BLOCK_SIZE)
 
 #define SEEKS           1024L
