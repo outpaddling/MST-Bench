@@ -69,6 +69,7 @@
 #include <fcntl.h>
 #include <stdint.h>
 #include <unistd.h>
+#include <limits.h>
 
 #if defined(_BORLAND)
 
@@ -166,6 +167,7 @@ int     main(int argc, char *argv[])
     size_t          mem_size,
 		    array_size;
     uint64_t        file_size;
+    char            host[_POSIX_HOST_NAME_MAX+1];
     
     if ( argc == 2 )
 	trials = atoi(argv[1]);
@@ -175,7 +177,10 @@ int     main(int argc, char *argv[])
     puts("is nonexistant.  Single user mode is the best option.");
     puts("\nPress return to begin...");
     getchar();
-
+    
+    gethostname(host, _POSIX_HOST_NAME_MAX);
+    printf("Hostname =\t%s\n", host);
+    
     /* Report OS, compiler, filesystem */
     uname(&un);
     
@@ -203,16 +208,19 @@ int     main(int argc, char *argv[])
     mem_size *= sysconf(_SC_PAGE_SIZE);
 #endif
     
+    printf("System =\t%s %s %s\nRAM =\t\t%lu MiB\n",
+	un.sysname, un.release, un.machine, mem_size / 1048576);
+
     /* Overwhelm RAM buffers. */
     /* CHANGEME: Allow command-line override */
     file_size = mem_size * 2LL;
-    printf("File size = %qu\n", (long long unsigned int)file_size);
+    printf("File size =\t%qu MiB\n",
+	(long long unsigned int)file_size / 1048576);
     
-    /* Overwhelm cache, but don't cause paging */
-    array_size = MIN(mem_size * 3 / 4, 512 * MEBI);
-    
-    printf("%s %s %s physmem=%lu\n",un.sysname, un.release, un.machine,
-	mem_size);
+    printf("CWD =\t\t%s\n", getcwd(NULL,0));
+    printf("Date/time =\t");
+    fflush(stdout);
+    system("date");
     
     puts("\nMount options:\n");
     system("/sbin/mount");
@@ -220,6 +228,9 @@ int     main(int argc, char *argv[])
     puts("\nDisk free:\n");
     system("/bin/df -h");
     putchar('\n');
+    
+    /* Overwhelm cache, but don't cause paging */
+    array_size = MIN(mem_size * 3 / 4, 512 * MEBI);
     
     for (trial=1; trial<=trials; ++trial)
     {
