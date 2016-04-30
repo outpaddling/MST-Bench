@@ -210,6 +210,7 @@ int     main(int argc, char *argv[])
     
     printf("System =\t%s %s %s\nRAM =\t\t%lu MiB\n",
 	un.sysname, un.release, un.machine, mem_size / 1048576);
+    printf("Compiler =\t%s\n", COMPILER);
 
     /* Overwhelm RAM buffers. */
     /* CHANGEME: Allow command-line override */
@@ -287,15 +288,15 @@ int     main(int argc, char *argv[])
 unsigned long   array_test(unsigned long array_size, int reps, int wsize)
 
 {
+    uint64_t        *array = malloc(array_size),
+		    *qp;;
+    uint32_t        *lp;
+    uint16_t        *sp;
+    uint8_t         *bp,
+		    *end;
     unsigned long   milliseconds,
 		    c;
     struct timeval  start_time, end_time;
-    uint8_t         *array = malloc(array_size),
-		    *end,
-		    *p;
-    uint16_t        *sp;
-    uint32_t        *lp;
-    uint64_t        *qp;
     char            array_size_str[MSG_MAX+1];
     
     if ( array == NULL )
@@ -303,7 +304,8 @@ unsigned long   array_test(unsigned long array_size, int reps, int wsize)
 	fprintf(stderr, "Could not allocate %lu bytes.\n", array_size);
 	exit(1);
     }
-    end = array + array_size;
+    
+    end = (uint8_t *)array + array_size;
     
     /* Test CPU and cache speed */
     printf("Filling a %s array %u times %d bytes at a time...\n",
@@ -315,23 +317,23 @@ unsigned long   array_test(unsigned long array_size, int reps, int wsize)
 	case    1:
 	    /* Byte */
 	    for (c = 0; c < reps; ++c)
-		for (p = array; p < end; ++p)
-		    *p = (uint8_t)c;
+		for (bp = (uint8_t *)array; bp < end; ++bp)
+		    *bp = 1;
 	    break;
 	case    2:
 	    for (c = 0; c < reps; ++c)
 		for (sp = (uint16_t *)array; sp < (uint16_t *)end; ++sp)
-		    *sp = (uint16_t)c;
+		    *sp = 1;
 	    break;
 	case    4:
 	    for (c = 0; c < reps; ++c)
 		for (lp = (uint32_t *)array; lp < (uint32_t *)end; ++lp)
-		    *lp = (uint32_t)c;
+		    *lp = 1;
 	    break;
 	case    8:
 	    for (c = 0; c < reps; ++c)
 		for (qp = (uint64_t *)array; qp < (uint64_t *)end; ++qp)
-		    *qp = (uint64_t)c;
+		    *qp = 1;
 	    break;
 	default:
 	    fprintf(stderr, "Invalid wsize: %d\n", wsize);
