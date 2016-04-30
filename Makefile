@@ -111,7 +111,7 @@ ${BIN}: ${OBJS}
 # for more information, or see the "depend" target below.
 
 bench.o: bench.c protos.h Makefile
-	${CC} -c ${CFLAGS} -DCOMPILER="\"gcc\"" bench.c
+	${CC} -c ${CFLAGS} -DCOMPILER="\"${CC}\"" bench.c
 
 ############################################################################
 # Remove generated files (objs and nroff output from man pages)
