@@ -76,8 +76,8 @@ LOCALBASE   ?= ${PREFIX}
 CC          ?= cc
 LD          = ${CC}
 
-# Disable optimizer, which may drastically alter simple array loop
-CFLAGS      = -O0
+# Use optimizer to reflect the way people really use a compiler
+CFLAGS      = -O
 
 ############################################################################
 # Assume first command in PATH.  Override with full pathnames if necessary.

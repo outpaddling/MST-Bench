@@ -208,9 +208,8 @@ int     main(int argc, char *argv[])
     mem_size *= sysconf(_SC_PAGE_SIZE);
 #endif
     
-    printf("System =\t%s %s %s\nRAM =\t\t%lu MiB\n",
-	un.sysname, un.release, un.machine, mem_size / 1048576);
-    printf("Compiler =\t%s\n", COMPILER);
+    printf("System =\t%s %s %s\nCompiler =\t%s\nRAM =\t\t%lu MiB\n",
+	un.sysname, un.release, un.machine, COMPILER, mem_size / 1048576);
 
     /* Overwhelm RAM buffers. */
     /* CHANGEME: Allow command-line override */
@@ -312,28 +311,37 @@ unsigned long   array_test(unsigned long array_size, int reps, int wsize)
 	    size_str(array_size, array_size_str, NULL), reps, wsize);
     gettimeofday(&start_time, NULL);
     
+    /*
+     *  Assign values to the array so that the optimizerer can't drastically
+     *  alter or eliminate the loop.  Assigning a constant value will result
+     *  in strange run time profiles as most optimizers will recognize an
+     *  opportunity to achieve the same result without brute force.
+     *  This code may need to be updated as optimizers get smarter.
+     *  Optimizer should be used to reflect the way people really use
+     *  a compiler.
+     */
     switch(wsize)
     {
 	case    1:
 	    /* Byte */
 	    for (c = 0; c < reps; ++c)
 		for (bp = (uint8_t *)array; bp < end; ++bp)
-		    *bp = 1;
+		    *bp = (uint8_t)bp;
 	    break;
 	case    2:
 	    for (c = 0; c < reps; ++c)
 		for (sp = (uint16_t *)array; sp < (uint16_t *)end; ++sp)
-		    *sp = 1;
+		    *sp = (uint16_t)sp;
 	    break;
 	case    4:
 	    for (c = 0; c < reps; ++c)
 		for (lp = (uint32_t *)array; lp < (uint32_t *)end; ++lp)
-		    *lp = 1;
+		    *lp = (uint32_t)lp;
 	    break;
 	case    8:
 	    for (c = 0; c < reps; ++c)
 		for (qp = (uint64_t *)array; qp < (uint64_t *)end; ++qp)
-		    *qp = 1;
+		    *qp = (uint64_t)qp;
 	    break;
 	default:
 	    fprintf(stderr, "Invalid wsize: %d\n", wsize);
