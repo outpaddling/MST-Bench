@@ -69,6 +69,7 @@
 #include <fcntl.h>
 #include <stdint.h>
 #include <unistd.h>
+#include <limits.h>
 
 #if defined(_BORLAND)
 
@@ -122,7 +123,7 @@ typedef int bool;
 #define MEBI            (KIBI*KIBI)
 #define GIBI            (MEBI*KIBI)
 
-#define BLOCK_SIZE      (KIBI*64L)
+#define BLOCK_SIZE      (MEBI*4L)
 #define BLOCKS          (file_size/BLOCK_SIZE)
 
 #define SEEKS           1024L
@@ -166,6 +167,7 @@ int     main(int argc, char *argv[])
     size_t          mem_size,
 		    array_size;
     uint64_t        file_size;
+    char            host[_POSIX_HOST_NAME_MAX+1];
     
     if ( argc == 2 )
 	trials = atoi(argv[1]);
@@ -175,7 +177,10 @@ int     main(int argc, char *argv[])
     puts("is nonexistant.  Single user mode is the best option.");
     puts("\nPress return to begin...");
     getchar();
-
+    
+    gethostname(host, _POSIX_HOST_NAME_MAX);
+    printf("Hostname =\t%s\n", host);
+    
     /* Report OS, compiler, filesystem */
     uname(&un);
     
@@ -203,15 +208,29 @@ int     main(int argc, char *argv[])
     mem_size *= sysconf(_SC_PAGE_SIZE);
 #endif
     
+    printf("System =\t%s %s %s\nCompiler =\t%s\nRAM =\t\t%lu MiB\n",
+	un.sysname, un.release, un.machine, COMPILER, mem_size / 1048576);
+
     /* Overwhelm RAM buffers. */
     /* CHANGEME: Allow command-line override */
     file_size = mem_size * 2LL;
-    printf("File size = %qu\n", (long long unsigned int)file_size);
+    printf("File size =\t%qu MiB\n",
+	(long long unsigned int)file_size / 1048576);
+    
+    printf("CWD =\t\t%s\n", getcwd(NULL,0));
+    printf("Date/time =\t");
+    fflush(stdout);
+    system("date");
+    
+    puts("\nMount options:\n");
+    system("/sbin/mount");
+    
+    puts("\nDisk free:\n");
+    system("/bin/df -h");
+    putchar('\n');
     
     /* Overwhelm cache, but don't cause paging */
     array_size = MIN(mem_size * 3 / 4, 512 * MEBI);
-    
-    printf("%s %s %s physmem=%lu\n",un.sysname, un.release, un.machine, mem_size);
     
     for (trial=1; trial<=trials; ++trial)
     {
@@ -261,9 +280,6 @@ int     main(int argc, char *argv[])
     report_random(seek, "seek", BLOCK_SIZE);
     report_throughput(read, "read", file_size, 1, BLOCK_SIZE);
     report_throughput(rewrite, "rewrite", file_size, 1, BLOCK_SIZE);
-
-    puts("Press return to quit.");
-    getchar();
     return 0;
 }
 
@@ -271,15 +287,15 @@ int     main(int argc, char *argv[])
 unsigned long   array_test(unsigned long array_size, int reps, int wsize)
 
 {
+    uint64_t        *array = malloc(array_size),
+		    *qp;;
+    uint32_t        *lp;
+    uint16_t        *sp;
+    uint8_t         *bp,
+		    *end;
     unsigned long   milliseconds,
 		    c;
     struct timeval  start_time, end_time;
-    uint8_t         *array = malloc(array_size),
-		    *end,
-		    *p;
-    uint16_t        *sp;
-    uint32_t        *lp;
-    uint64_t        *qp;
     char            array_size_str[MSG_MAX+1];
     
     if ( array == NULL )
@@ -287,35 +303,45 @@ unsigned long   array_test(unsigned long array_size, int reps, int wsize)
 	fprintf(stderr, "Could not allocate %lu bytes.\n", array_size);
 	exit(1);
     }
-    end = array + array_size;
+    
+    end = (uint8_t *)array + array_size;
     
     /* Test CPU and cache speed */
     printf("Filling a %s array %u times %d bytes at a time...\n",
 	    size_str(array_size, array_size_str, NULL), reps, wsize);
     gettimeofday(&start_time, NULL);
     
+    /*
+     *  Assign values to the array so that the optimizerer can't drastically
+     *  alter or eliminate the loop.  Assigning a constant value will result
+     *  in strange run time profiles as most optimizers will recognize an
+     *  opportunity to achieve the same result without brute force.
+     *  This code may need to be updated as optimizers get smarter.
+     *  Optimizer should be used to reflect the way people really use
+     *  a compiler.
+     */
     switch(wsize)
     {
 	case    1:
 	    /* Byte */
 	    for (c = 0; c < reps; ++c)
-		for (p = array; p < end; ++p)
-		    *p = (uint8_t)c;
+		for (bp = (uint8_t *)array; bp < end; ++bp)
+		    *bp = (uint8_t)bp;
 	    break;
 	case    2:
 	    for (c = 0; c < reps; ++c)
 		for (sp = (uint16_t *)array; sp < (uint16_t *)end; ++sp)
-		    *sp = (uint16_t)c;
+		    *sp = (uint16_t)sp;
 	    break;
 	case    4:
 	    for (c = 0; c < reps; ++c)
 		for (lp = (uint32_t *)array; lp < (uint32_t *)end; ++lp)
-		    *lp = (uint32_t)c;
+		    *lp = (uint32_t)lp;
 	    break;
 	case    8:
 	    for (c = 0; c < reps; ++c)
 		for (qp = (uint64_t *)array; qp < (uint64_t *)end; ++qp)
-		    *qp = (uint64_t)c;
+		    *qp = (uint64_t)qp;
 	    break;
 	default:
 	    fprintf(stderr, "Invalid wsize: %d\n", wsize);
@@ -341,7 +367,11 @@ unsigned long   write_test_low(uint64_t file_size)
 		    milliseconds;
     int             fd;
     static char     buff[BLOCK_SIZE+1];
-    
+
+    srand(time(NULL));
+    for (c = 0; c < BLOCK_SIZE; ++c)
+	buff[c] = random();
+
     /* Test sequential write */
     printf("Performing a %qu mebibyte low-level sequential write...\n",
 	(long long unsigned int)(BLOCK_SIZE * BLOCKS / MEBI));
