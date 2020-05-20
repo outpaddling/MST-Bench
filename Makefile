@@ -47,13 +47,13 @@
 ############################################################################
 # Executable
 
-BIN     = bench
-MAN     = bench.1
+BIN     = optibench
+MAN     = optibench.1
 
 ############################################################################
 # List object files that comprise BIN.
 
-OBJS    = bench.o
+OBJS    = optibench.o
 
 ############################################################################
 # Compile, link, and install options
@@ -110,8 +110,8 @@ ${BIN}: ${OBJS}
 # be done automatically using "cpp -M" or "cpp -MM".  Run "man cpp"
 # for more information, or see the "depend" target below.
 
-bench.o: bench.c protos.h Makefile
-	${CC} -c ${CFLAGS} -DCOMPILER="\"${CC}\"" bench.c
+optibench.o: optibench.c protos.h Makefile
+	${CC} -c ${CFLAGS} -DCOMPILER="\"${CC}\"" optibench.c
 
 ############################################################################
 # Remove generated files (objs and nroff output from man pages)

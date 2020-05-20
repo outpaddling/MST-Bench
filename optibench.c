@@ -108,8 +108,6 @@ int     gettimeofday(struct timeval *, void *);
 
 #endif
 
-typedef int bool;
-
 #include "protos.h"
 
 #define REPORT_FORMAT   "%12s %-7s %12s blocks %12.2f ms %12.2f MiB/s\n"
