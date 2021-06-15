@@ -243,10 +243,9 @@ int     main(int argc, char *argv[])
 	for (c = 0, wsize = 1; c < 4; ++c, wsize *= 2)
 	    array[c] += array_test(array_size, ARRAY_REPS, wsize);
 	write += write_test_low(file_size);
-	/* Do seek before sequential read to randomize the read buffers */
-	seek += seek_test(file_size);
 	read += read_test_low(file_size);
 	rewrite += write_test_low(file_size);
+	seek += seek_test(file_size);
 	unlink(TEMP_FILE);
     }
     
@@ -276,9 +275,9 @@ int     main(int argc, char *argv[])
     rewrite /= trials;
     
     report_throughput(write, "write", file_size, 1, BLOCK_SIZE);
-    report_random(seek, "seek", file_size, BLOCK_SIZE);
     report_throughput(read, "read", file_size, 1, BLOCK_SIZE);
     report_throughput(rewrite, "rewrite", file_size, 1, BLOCK_SIZE);
+    report_random(seek, "seek", file_size, BLOCK_SIZE);
     return 0;
 }
 
