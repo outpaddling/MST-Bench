@@ -236,13 +236,18 @@ int     main(int argc, char *argv[])
 	puts("===========================================================");
 	printf("Trial %d...\n", trial);
 	puts("===========================================================");
+	
+	/* Memory tests */
 	puts("Testing small array, high cache hit-ratio...");
 	for (c = 0, wsize = 1; c < 4; ++c, wsize *= 2)
 	    cache[c] += array_test(SMALL_ARRAY_SIZE, SMALL_ARRAY_REPS, wsize);
 	puts("Testing large array, low cache hit-ratio...");
 	for (c = 0, wsize = 1; c < 4; ++c, wsize *= 2)
 	    array[c] += array_test(array_size, ARRAY_REPS, wsize);
+	
+	/* Disk tests */
 	write += write_test_low(file_size);
+	seek += seek_test(file_size);
 	read += read_test_low(file_size);
 	rewrite += write_test_low(file_size);
 	seek += seek_test(file_size);
@@ -410,13 +415,41 @@ unsigned long   write_test_low(uint64_t file_size)
 }
 
 
+/***************************************************************************
+ *  Description:
+ *      Shuffle array
+ *      https://benpfaff.org/writings/clc/shuffle.html
+ *
+ *  History: 
+ *  Date        Name        Modification
+ *  2021-06-15  Jason Bacon Derive from Ben Pfaff writings
+ ***************************************************************************/
+
+void    shuffle(unsigned long array[], size_t n)
+{
+    size_t  i, j;
+    unsigned long   temp;
+    
+    if (n > 1) 
+    {
+	for (i = 0; i < n - 1; i++) 
+	{
+	    j = i + random() / (RAND_MAX / (n - i) + 1);
+	    temp = array[j];
+	    array[j] = array[i];
+	    array[i] = temp;
+	}
+    }
+}
+
+
 unsigned long   seek_test(uint64_t file_size)
 
 {
     struct timeval  start_time, end_time;
     unsigned long   c,
 		    milliseconds,
-		    pos;
+		    pos[BLOCKS];
     int             fd;
     static char     buff[BLOCK_SIZE+1];
 
@@ -426,10 +459,16 @@ unsigned long   seek_test(uint64_t file_size)
     gettimeofday(&start_time, NULL);
     fd = open(TEMP_FILE, O_RDONLY);
     empty_bar(BAR_WIDTH);
+    
+    /* Generate list of block start positions, then shuffle */
+    for (c = 0; c < SEEKS; ++c)
+	pos[c] = c * BLOCK_SIZE;
+    shuffle(pos, BLOCKS);
+    
     for (c = 0; c < SEEKS; ++c)
     {
-	pos = (rand() % BLOCKS) * BLOCK_SIZE;
-	lseek(fd, pos, SEEK_SET);
+	//printf("%lu\n", pos[c]);
+	lseek(fd, pos[c], SEEK_SET);
 	if ( read(fd, buff, (size_t) BLOCK_SIZE) < 0 )
 	{
 	    fprintf(stderr, "Read error.  Aborting...\n");
