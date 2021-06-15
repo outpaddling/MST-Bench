@@ -124,7 +124,8 @@ int     gettimeofday(struct timeval *, void *);
 #define BLOCK_SIZE      (MEBI*4L)
 #define BLOCKS          (file_size/BLOCK_SIZE)
 
-#define SEEKS           1024L
+// #define SEEKS           8192L
+#define SEEKS           BLOCKS
 
 #define SMALL_ARRAY_SIZE    (64L*KIBI)
 #define SMALL_ARRAY_REPS    16384
@@ -275,7 +276,7 @@ int     main(int argc, char *argv[])
     rewrite /= trials;
     
     report_throughput(write, "write", file_size, 1, BLOCK_SIZE);
-    report_random(seek, "seek", BLOCK_SIZE);
+    report_random(seek, "seek", file_size, BLOCK_SIZE);
     report_throughput(read, "read", file_size, 1, BLOCK_SIZE);
     report_throughput(rewrite, "rewrite", file_size, 1, BLOCK_SIZE);
     return 0;
@@ -441,7 +442,7 @@ unsigned long   seek_test(uint64_t file_size)
     gettimeofday(&end_time, NULL);
     milliseconds = difftimeofday(&end_time, &start_time) / US_PER_MS;
     putchar('\n');
-    report_random(milliseconds, "seek", BLOCK_SIZE);
+    report_random(milliseconds, "seek", file_size, BLOCK_SIZE);
     putchar('\n');
     return milliseconds;
 }
@@ -520,6 +521,7 @@ void    report_throughput(unsigned long milliseconds,
 
 void    report_random(unsigned long milliseconds,
 		      char *tag,
+		      uint64_t file_size,
 		      unsigned long block_size)
 
 {
