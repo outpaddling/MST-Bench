@@ -247,7 +247,6 @@ int     main(int argc, char *argv[])
 	
 	/* Disk tests */
 	write += write_test_low(file_size);
-	seek += seek_test(file_size);
 	read += read_test_low(file_size);
 	rewrite += write_test_low(file_size);
 	seek += seek_test(file_size);
@@ -376,9 +375,12 @@ unsigned long   write_test_low(uint64_t file_size)
 	buff[c] = random();
 
     /* Test sequential write */
-    printf("Performing a %qu mebibyte low-level sequential write...\n",
-	(long long unsigned int)(BLOCK_SIZE * BLOCKS / MEBI));
-    printf("Block size: %lu  Blocks: %qu\n", BLOCK_SIZE, (long long unsigned int)BLOCKS);
+    printf("Writing %qu blocks of size %lu in sequential order...\n",
+	   (long long unsigned int)BLOCKS, BLOCK_SIZE);
+    printf("Total size = %qu mebibytes.\n",
+	   (long long unsigned int)(BLOCK_SIZE * BLOCKS / MEBI));
+
+    empty_bar(BAR_WIDTH);
     gettimeofday(&start_time, NULL);
     fd = open(TEMP_FILE, O_WRONLY | O_CREAT, 0600);
     if (fd == -1)
@@ -386,7 +388,6 @@ unsigned long   write_test_low(uint64_t file_size)
 	fprintf(stderr, "Error creating file.\n");
 	return 1;
     }
-    empty_bar(BAR_WIDTH);
     for (c = 0; c < BLOCKS; ++c)
     {
 	if ( write(fd, buff, (size_t) BLOCK_SIZE) != BLOCK_SIZE )
@@ -454,17 +455,19 @@ unsigned long   seek_test(uint64_t file_size)
     static char     buff[BLOCK_SIZE+1];
 
     /* Test random seek */
-    printf("Performing %lu low-level random seeks with %lu byte reads...\n",
-	    SEEKS, BLOCK_SIZE);
-    gettimeofday(&start_time, NULL);
-    fd = open(TEMP_FILE, O_RDONLY);
-    empty_bar(BAR_WIDTH);
+    printf("Reading %qu blocks of size %lu in random order...\n",
+	   (long long unsigned int)BLOCKS, BLOCK_SIZE);
+    printf("Total size = %qu mebibytes.\n",
+	   (long long unsigned int)(BLOCK_SIZE * BLOCKS / MEBI));
     
     /* Generate list of block start positions, then shuffle */
     for (c = 0; c < SEEKS; ++c)
 	pos[c] = c * BLOCK_SIZE;
     shuffle(pos, BLOCKS);
     
+    empty_bar(BAR_WIDTH);
+    gettimeofday(&start_time, NULL);
+    fd = open(TEMP_FILE, O_RDONLY);
     for (c = 0; c < SEEKS; ++c)
     {
 	//printf("%lu\n", pos[c]);
@@ -497,13 +500,14 @@ unsigned long   read_test_low(uint64_t file_size)
     static char     buff[BLOCK_SIZE+1];
     
     /* Read sequentially */
-    printf("Performing a %qu mebibyte low-level sequential read...\n",
-	(long long unsigned int)(BLOCK_SIZE * BLOCKS / MEBI));
-    printf("Block size: %lu  Blocks: %qu\n", BLOCK_SIZE,
-	(long long unsigned int)BLOCKS);
+    printf("Reading %qu blocks of size %lu in sequential order...\n",
+	   (long long unsigned int)BLOCKS, BLOCK_SIZE);
+    printf("Total size = %qu mebibytes.\n",
+	   (long long unsigned int)(BLOCK_SIZE * BLOCKS / MEBI));
+
+    empty_bar(BAR_WIDTH);
     gettimeofday(&start_time, NULL);
     fd = open(TEMP_FILE, O_RDONLY, 0);
-    empty_bar(BAR_WIDTH);
     for (c = 0; c < BLOCKS; ++c)
     {
 	if ( read(fd, buff, (size_t) BLOCK_SIZE) != BLOCK_SIZE )
