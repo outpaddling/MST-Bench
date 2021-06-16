@@ -54,9 +54,6 @@
  *      Disk random read/write:
  *          Disk seek time, filesystem, disk transfer rate
  *
- * Usage:
- *      bench [trials]
- *
  * Returns:
  *      0 upon successful completion, non-zero error codes otherwise.
  *
@@ -65,6 +62,8 @@
  ***************************************************************************/
 
 #include <stdio.h>
+#include <string.h>
+#include <sysexits.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdint.h>
@@ -167,22 +166,7 @@ int     main(int argc, char *argv[])
 		    array_size;
     uint64_t        file_size;
     char            host[_POSIX_HOST_NAME_MAX+1];
-    
-    if ( argc == 2 )
-	trials = atoi(argv[1]);
 
-    puts("\nThis test should be run on a completely idle system.");
-    puts("Make sure the load average near 0, and I/O activity");
-    puts("is nonexistant.  Single user mode is the best option.");
-    puts("\nPress return to begin...");
-    getchar();
-    
-    gethostname(host, _POSIX_HOST_NAME_MAX);
-    printf("Hostname =\t%s\n", host);
-    
-    /* Report OS, compiler, filesystem */
-    uname(&un);
-    
     //BSD only:
 #ifdef __APPLE__
     char    discard[100];
@@ -206,13 +190,40 @@ int     main(int argc, char *argv[])
     /* sysconf() returns long, so do separately to avoid overflow */
     mem_size *= sysconf(_SC_PAGE_SIZE);
 #endif
-    
-    printf("System =\t%s %s %s\nCompiler =\t%s\nRAM =\t\t%lu MiB\n",
-	un.sysname, un.release, un.machine, COMPILER, mem_size / 1048576);
 
     /* Overwhelm RAM buffers. */
     /* CHANGEME: Allow command-line override */
     file_size = mem_size * 2LL;
+
+    /* Process command line */
+    for (c = 0; c < argc; ++c)
+    {
+	if ( strcmp(argv[c], "--help") == 0 )
+	    usage(argv);
+	else if ( strcmp(argv[c], "--trials") == 0 )
+	{
+	    trials = atoi(argv[++c]);
+	}
+	else if ( strcmp(argv[c], "--file-size") == 0 )
+	{
+	    file_size = atoi(argv[++c]) * GIBI;
+	}
+    }
+    
+    puts("\nThis test should be run on a completely idle system.");
+    puts("Make sure the load average near 0, and I/O activity");
+    puts("is nonexistant.  Single user mode is the best option.");
+    puts("\nPress return to begin...");
+    getchar();
+    
+    gethostname(host, _POSIX_HOST_NAME_MAX);
+    printf("Hostname =\t%s\n", host);
+    
+    /* Report OS, compiler, filesystem */
+    uname(&un);
+    
+    printf("System =\t%s %s %s\nCompiler =\t%s\nRAM =\t\t%lu MiB\n",
+	un.sysname, un.release, un.machine, COMPILER, mem_size / 1048576);
     printf("File size =\t%qu MiB\n",
 	(long long unsigned int)file_size / 1048576);
     
@@ -285,7 +296,7 @@ int     main(int argc, char *argv[])
     report_throughput(read, "read", file_size, 1, BLOCK_SIZE);
     report_throughput(rewrite, "rewrite", file_size, 1, BLOCK_SIZE);
     report_throughput(seek, "seek", file_size, 1, BLOCK_SIZE);
-    return 0;
+    return EX_OK;
 }
 
 
@@ -599,6 +610,15 @@ time_t  difftimeofday(struct timeval * start_time, struct timeval * end_time)
 
 {
     return 1000000L * (start_time->tv_sec - end_time->tv_sec) + (start_time->tv_usec - end_time->tv_usec);
+}
+
+
+void    usage(char *argv[])
+
+{
+    fprintf(stderr, "Usage: %s [--help] [--trials N] [--file-size GiB]\n",
+	    argv[0]);
+    exit(EX_USAGE);
 }
 
 
