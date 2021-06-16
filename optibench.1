@@ -1,50 +1,84 @@
-.TH BENCH 1
+.TH OptiBench 1
 .SH NAME    \" Section header
 .PP
  
-\" Put title and VERY brief description here
-\" e.g. APE \- Another Programmers Editor
-BENCH - General benchmark for CPU, RAM, and Disk
+OptiBench - General benchmark for CPU, RAM, and Disk
 
 \" Convention:
 \" Underline anything that is typed verbatim - commands, etc.
 .SH SYNOPSIS
 .PP
 .nf 
-.na 
-    \" Put usage information here
-    \" e.g. ape [file1] [file2] ... [fileN]
-    bench
+.na
+optibench [--help] [--trials N] [--file-size GiB]
 .ad
 .fi
 
 .SH OPTIONS
 .TP
-\fB\-\-\flagfR[=\fIparameter\fR]
-description
+\fB\-\-\fBhelp
+Print a basic help message
 
-\" Optional sections
-.SH "HOW TO READ THIS MANUAL"
-.SH "ORGANIZATION"
+.TP
+\fB\-\-\fBtrials N
+Run N trials and report the average.  The default is 3.
+
+.TP
+\fB\-\-\fBfile-size GiB
+Use a file of GiB gibibytes for the disk tests.  The default is 2 * physical
+memory size, which is generally enough to overwhelm disk buffering and
+produce a reasonable estimate of sustainable throughput.  However, systems
+with low physical memory may benefit from large disk cache on the
+controller which may result in an overestimate of disk speed.  In those
+cases, specifying a larger file system may produce more realistic results.
+
 .SH "PURPOSE"
+
+.B OptiBench
+is a simple program for reporting the best performance possible on given
+hardware using an optimal program.
+
 .SH "DESCRIPTION"
+
+.B Optibench
+estimates maximum sustainable throughput for memory and disk under typical
+circumstances.
+
+It runs the following speed tests:
+
+Sequential memory access for a small array that should result in a high
+cache hit ratio, where most accesses are satisfied by the cache.
+
+Sequential memory access for a large array that should result in a low
+cache hit ratio, where many accesses are not satisfied by the cache.
+
+Sequential disk write of a file much larger than physical memory, so that
+disk buffering has a minimal impact and the reported throughput represents
+sustainable speed for the disk hardware.
+
+Sequential disk read of a file much larger than physical memory, so that
+disk buffering has a minimal impact and the reported throughput represents
+sustainable speed for the disk hardware.
+
+Sequential disk rewrite of a file much larger than physical memory, so that
+disk buffering has a minimal impact and the reported throughput represents
+sustainable speed for the disk hardware.  In many file systems, overwriting
+shows different performance characteristics than new writes.
+
+Random disk read of a file much larger than physical memory, so that
+disk buffering has a minimal impact and the reported throughput represents
+sustainable speed for the disk hardware.  The random read reads the same
+file as the sequential read, reading every block in the file exactly once
+but in random order.  This provides some idea about the latency of disk
+access.  Note that dividing the file into more random reads of smaller
+blocks will result in lower performance.
 
 .SH FILES
 .nf
 .na
-    \" List related files and describe each one here
+bench.tmpfile \- file generated in current directory for disk speed test
 .ad
 .fi
-
-.SH ENVIRONMENT
-.nf
-.na
-    \" List related environment variables and describe each one here
-.ad
-.fi
-
-.SH "SEE ALSO"
-    \" List related commands here
 
 .SH BUGS
 Please report bugs to the author and send patches in unified diff format.
@@ -53,4 +87,4 @@ Please report bugs to the author and send patches in unified diff format.
 .SH AUTHOR
 .nf
 .na
-
+J. Bacon
