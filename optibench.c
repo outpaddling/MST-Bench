@@ -234,7 +234,7 @@ int     main(int argc, char *argv[])
     /* Ensure different random results each time */
     srandom(time(NULL));
     
-    for (trial=1; trial<=1; ++trial)
+    for (trial=1; trial<=trials; ++trial)
     {
 	puts("===========================================================");
 	printf("Trial %d...\n", trial);
