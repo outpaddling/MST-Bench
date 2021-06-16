@@ -231,7 +231,10 @@ int     main(int argc, char *argv[])
     /* Overwhelm cache, but don't cause paging */
     array_size = MIN(mem_size * 3 / 4, 512 * MEBI);
     
-    for (trial=1; trial<=trials; ++trial)
+    /* Ensure different random results each time */
+    srandom(time(NULL));
+    
+    for (trial=1; trial<=1; ++trial)
     {
 	puts("===========================================================");
 	printf("Trial %d...\n", trial);
@@ -281,7 +284,7 @@ int     main(int argc, char *argv[])
     report_throughput(write, "write", file_size, 1, BLOCK_SIZE);
     report_throughput(read, "read", file_size, 1, BLOCK_SIZE);
     report_throughput(rewrite, "rewrite", file_size, 1, BLOCK_SIZE);
-    report_random(seek, "seek", file_size, BLOCK_SIZE);
+    report_throughput(seek, "seek", file_size, 1, BLOCK_SIZE);
     return 0;
 }
 
@@ -483,7 +486,7 @@ unsigned long   seek_test(uint64_t file_size)
     gettimeofday(&end_time, NULL);
     milliseconds = difftimeofday(&end_time, &start_time) / US_PER_MS;
     putchar('\n');
-    report_random(milliseconds, "seek", file_size, BLOCK_SIZE);
+    report_throughput(milliseconds, "seek", file_size, 1, BLOCK_SIZE);
     putchar('\n');
     return milliseconds;
 }
@@ -558,26 +561,6 @@ void    report_throughput(unsigned long milliseconds,
 	size_str(data_size, data_size_str, NULL), tag, 
 	size_str(block_size, block_size_str, NULL), (double)milliseconds,
 	(data_size * reps / (double)MEBI) / ((double)milliseconds / MS_PER_SEC));
-}
-
-
-void    report_random(unsigned long milliseconds,
-		      char *tag,
-		      uint64_t file_size,
-		      unsigned long block_size)
-
-{
-    double  mib_per_sec,
-	    ms_per_seek;
-    char    seek_str[MSG_MAX+1], 
-	    block_size_str[MSG_MAX+1];
-	    
-    mib_per_sec = (SEEKS * BLOCK_SIZE / (double)MEBI) / (milliseconds / MS_PER_SEC);
-    ms_per_seek = (double)milliseconds / SEEKS;
-    
-    printf(REPORT_FORMAT,
-	size_str(SEEKS, seek_str, ""), tag,
-	size_str(block_size,block_size_str,NULL), ms_per_seek, mib_per_sec);
 }
 
 
