@@ -131,6 +131,6 @@ proto:
 # Install all target files (binaries, libraries, docs, etc.)
 
 install: all
-	${MKDIR} -p ${STAGEDIR}${PREFIX}/bin ${STAGEDIR}${MANDIR}/man1
-	${INSTALL} -s -m 0555 ${BIN} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL} -m 0444 ${MAN} ${STAGEDIR}${MANDIR}/man1
+	${MKDIR} -p ${DESTDIR}${PREFIX}/bin ${DESTDIR}${MANDIR}/man1
+	${INSTALL} -s -m 0555 ${BIN} ${DESTDIR}${PREFIX}/bin
+	${INSTALL} -m 0444 ${MAN} ${DESTDIR}${MANDIR}/man1
