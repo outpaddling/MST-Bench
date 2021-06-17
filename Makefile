@@ -60,8 +60,9 @@ OBJS    = mst-bench.o
 
 # Install in /usr/local, unless defined by the parent Makefile, the
 # environment, or a command line option such as PREFIX=/opt/local.
-PREFIX      ?= /usr/local
-MANPREFIX   ?= ${PREFIX}/share
+PREFIX      ?= ../local
+MANPREFIX   ?= ${PREFIX}
+MANDIR      ?= ${MANPREFIX}/man
 
 # Where to find local libraries and headers.  For MacPorts, override
 # with "make LOCALBASE=/opt/local"
@@ -130,14 +131,6 @@ proto:
 # Install all target files (binaries, libraries, docs, etc.)
 
 install: all
-	${MKDIR} -p ${PREFIX}/bin ${PREFIX}/man/man1
-	${INSTALL} -s -m 0555 ${BIN} ${PREFIX}/bin
-	${INSTALL} -m 0444 ${MAN} ${MANPREFIX}/man/man1
-
-############################################################################
-# Remove all installed files
-
-uninstall:
-	${RM} ${PREFIX}/bin/${BIN}
-	${RM} ${MANPREFIX}/man/man1/${MAN}
-
+	${MKDIR} -p ${STAGEDIR}${PREFIX}/bin ${MANDIR}/man1
+	${INSTALL} -s -m 0555 ${BIN} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL} -m 0444 ${MAN} ${MANDIR}/man1
