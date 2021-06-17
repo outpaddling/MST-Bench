@@ -1,8 +1,8 @@
-.TH OptiBench 1
+.TH MST-Bench 1
 .SH NAME    \" Section header
 .PP
  
-OptiBench - General benchmark for CPU, RAM, and Disk
+MST-Bench - Maximum Sustainable Throughput Benchmark
 
 \" Convention:
 \" Underline anything that is typed verbatim - commands, etc.
@@ -10,7 +10,7 @@ OptiBench - General benchmark for CPU, RAM, and Disk
 .PP
 .nf 
 .na
-optibench [--help] [--trials N] [--file-size GiB]
+mst-bench [--help] [--trials N] [--file-size GiB]
 .ad
 .fi
 
@@ -34,14 +34,14 @@ cases, specifying a larger file system may produce more realistic results.
 
 .SH "PURPOSE"
 
-.B OptiBench
+.B MST-Bench
 is a simple program for reporting the maximum sustainable memory and disk
 throughput one could expect from an optimal program.  It does not attempt
 to report hardware transfer rate (which is not generally useful) or estimate
 performance of real programs.
 
 The goal is to provide a theoretical maximum to which real programs can be
-compared.  For example, if optibench reports 10 seconds to sequentially read
+compared.  For example, if MST-Bench reports 10 seconds to sequentially read
 the generated file, then we know that 10 seconds is the theoretical best
 time that any program can achieve while streaming this file.  If
 .B fgrep string bench.tmpfile
@@ -53,7 +53,7 @@ be sped up much further.
 
 .SH "DESCRIPTION"
 
-.B Optibench
+.B MST-Bench
 estimates maximum sustainable throughput for memory and disk under typical
 circumstances.
 

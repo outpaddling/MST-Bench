@@ -1,7 +1,6 @@
-OptiBench
-=========
+# MST-Bench - Maximum Sustainable Throughput Benchmark
 
-OptiBench is a simple program to measure optimal sustained memory and disk
+MST-Bench is a simple program to measure optimal sustained memory and disk
 performance.
 
 Unlike many benchmarks, it does not attempt to simulate naturally occurring

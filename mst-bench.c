@@ -137,7 +137,7 @@ int     gettimeofday(struct timeval *, void *);
  */
 #define BAR_WIDTH       64
 
-#define TEMP_FILE       "optibench.tempfile"
+#define TEMP_FILE       "mst-bench.tempfile"
 
 #define MS_PER_SEC      1000
 #define US_PER_MS       1000

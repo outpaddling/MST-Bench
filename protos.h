@@ -1,4 +1,4 @@
-/* optibench.c */
+/* mst-bench.c */
 int main(int argc, char *argv[]);
 unsigned long array_test(unsigned long array_size, int reps, int wsize);
 unsigned long write_test_low(uint64_t file_size);
