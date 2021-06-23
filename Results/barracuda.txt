@@ -6,6 +6,8 @@ is nonexistant.  Single user mode is the best option.
 
 Press return to begin...
 
+Custom tower workstation, Gigabyte motherboard, 4-disk RAID-Z
+
 Hostname =	barracuda.uits.uwm.edu
 System =	FreeBSD 12.2-RELEASE-p7 amd64
 Compiler =	cc

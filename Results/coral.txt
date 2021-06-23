@@ -6,6 +6,8 @@ is nonexistant.  Single user mode is the best option.
 
 Press return to begin...
 
+Lenovo ThinkCenter M92p-Tiny, Sandisk SSD
+
 Hostname =	coral.acadix.biz
 System =	FreeBSD 12.2-RELEASE-p7 amd64
 Compiler =	cc
