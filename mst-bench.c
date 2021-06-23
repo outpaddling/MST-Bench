@@ -255,7 +255,6 @@ int     main(int argc, char *argv[])
     
     system("mount | fgrep 'zfs,' && zpool status");
     putchar('\n');
-    return 0;
     
     /* Overwhelm cache, but don't cause paging */
     array_size = MIN(mem_size * 3 / 4, 512 * MEBI);
