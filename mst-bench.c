@@ -231,12 +231,20 @@ int     main(int argc, char *argv[])
     printf("Date/time =\t");
     fflush(stdout);
     system("date");
-    
+
+// FIXME: Add equivalents for other platforms
+#ifdef __FreeBSD__
+    puts("\nDisk hardware:\n");
+    system("geom disk list");
+#endif
+
     puts("\nMount options:\n");
     system("/sbin/mount");
     
     puts("\nDisk free:\n");
     system("/bin/df -h");
+    
+    system("mount | fgrep 'zfs,' && zpool status");
     putchar('\n');
     
     /* Overwhelm cache, but don't cause paging */
@@ -342,17 +350,17 @@ unsigned long   array_test(unsigned long array_size, int reps, int wsize)
 	    /* Byte */
 	    for (c = 0; c < reps; ++c)
 		for (bp = (uint8_t *)array; bp < end; ++bp)
-		    *bp = (uint8_t)bp;
+		    *bp = (size_t)bp | 0xff;
 	    break;
 	case    2:
 	    for (c = 0; c < reps; ++c)
 		for (sp = (uint16_t *)array; sp < (uint16_t *)end; ++sp)
-		    *sp = (uint16_t)sp;
+		    *sp = (size_t)sp | 0xffff;
 	    break;
 	case    4:
 	    for (c = 0; c < reps; ++c)
 		for (lp = (uint32_t *)array; lp < (uint32_t *)end; ++lp)
-		    *lp = (uint32_t)lp;
+		    *lp = (size_t)lp | 0xffffffff;
 	    break;
 	case    8:
 	    for (c = 0; c < reps; ++c)
