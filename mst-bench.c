@@ -224,7 +224,13 @@ int     main(int argc, char *argv[])
     
     printf("System =\t%s %s %s\nCompiler =\t%s\nRAM =\t\t%lu MiB\n",
 	un.sysname, un.release, un.machine, COMPILER, mem_size / 1048576);
-    printf("File size =\t%qu MiB\n",
+// FIXME: Add equivalents for other platforms
+#ifdef __FreeBSD__
+    putchar('\n');
+    system("grep '^CPU:' /var/run/dmesg.boot");
+    system("grep '/SMP:' /var/run/dmesg.boot");
+#endif
+    printf("\nFile size =\t%qu MiB\n",
 	(long long unsigned int)file_size / 1048576);
     
     printf("CWD =\t\t%s\n", getcwd(NULL,0));
@@ -249,6 +255,7 @@ int     main(int argc, char *argv[])
     
     system("mount | fgrep 'zfs,' && zpool status");
     putchar('\n');
+    return 0;
     
     /* Overwhelm cache, but don't cause paging */
     array_size = MIN(mem_size * 3 / 4, 512 * MEBI);
