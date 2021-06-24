@@ -6,6 +6,8 @@ is nonexistant.  Single user mode is the best option.
 
 Press return to begin...
 
+Dell PowerEdge R420, Perc (LSI MegaRAID)
+
 Hostname =	unixdev1.hpc.uwm.edu
 System =	FreeBSD 12.2-RELEASE-p7 amd64
 Compiler =	cc
