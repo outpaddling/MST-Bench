@@ -1,6 +1,7 @@
 FreeBSD herring.acadix  bacon ~ 18: mst-bench
 
 ROCK64 1 GiB, 64 GiB eMMC
+* Write speed to the eMMC via USB3 eMMC adapter on ThinkPad was over 50 MB/s
 
 This test should be run on a completely idle system.
 Make sure the load average near 0, and I/O activity
@@ -8,16 +9,16 @@ is nonexistant.  Single user mode is the best option.
 
 Press return to begin...
 
-Hostname =	herring.acadix.biz
-System =	FreeBSD 13.0-RELEASE-p3 arm64
-Compiler =	cc
-RAM =		1001 MiB
+Hostname =      herring.acadix.biz
+System =        FreeBSD 13.0-RELEASE-p3 arm64
+Compiler =      cc
+RAM =           1001 MiB
 
 FreeBSD/SMP: Multiprocessor System Detected: 4 CPUs
 
-File size =	2002 MiB
-CWD =		/home/bacon
-Date/time =	Sat Jul  3 21:54:00 UTC 2021
+File size =     2002 MiB
+CWD =           /home/bacon
+Date/time =     Sat Jul  3 21:54:00 UTC 2021
 
 Disk hardware:
 
