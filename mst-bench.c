@@ -126,9 +126,9 @@ int     gettimeofday(struct timeval *, void *);
 // #define SEEKS           8192L
 #define SEEKS           BLOCKS
 
-#define SMALL_ARRAY_SIZE    (128L*KIBI)
+#define SMALL_ARRAY_SIZE    (256L*KIBI)
 #define SMALL_ARRAY_REPS    (256L*KIBI)
-#define ARRAY_REPS          40L
+#define ARRAY_REPS          64L
 
 /*
  *  Should divide into BLOCKS and SEEKS for a clean progress bar
