@@ -127,8 +127,8 @@ int     gettimeofday(struct timeval *, void *);
 #define SEEKS           BLOCKS
 
 #define SMALL_ARRAY_SIZE    (256L*KIBI)
-#define SMALL_ARRAY_REPS    (256L*KIBI)
-#define ARRAY_REPS          64L
+#define SMALL_ARRAY_REPS    (64L*KIBI)
+#define ARRAY_REPS          8L
 
 /*
  *  Should divide into BLOCKS and SEEKS for a clean progress bar
@@ -257,7 +257,7 @@ int     main(int argc, char *argv[])
     putchar('\n');
     
     /* Overwhelm cache, but don't cause paging */
-    array_size = MIN(mem_size * 3 / 4, 512 * MEBI);
+    array_size = MIN(mem_size * 3 / 4, 2048 * MEBI);
     
     /* Ensure different random results each time */
     srandom(time(NULL));
@@ -320,14 +320,11 @@ int     main(int argc, char *argv[])
 unsigned long   array_test(unsigned long array_size, int reps, int wsize)
 
 {
-    uint64_t        *array = malloc(array_size),
-		    *qp;;
+    uint64_t        *array = malloc(array_size), *qp;
     uint32_t        *lp;
     uint16_t        *sp;
-    uint8_t         *bp,
-		    *end;
-    unsigned long   milliseconds,
-		    c;
+    uint8_t         *bp, *end;
+    unsigned long   milliseconds, c;
     struct timeval  start_time, end_time;
     char            array_size_str[MSG_MAX+1];
     
@@ -359,17 +356,17 @@ unsigned long   array_test(unsigned long array_size, int reps, int wsize)
 	    /* Byte */
 	    for (c = 0; c < reps; ++c)
 		for (bp = (uint8_t *)array; bp < end; ++bp)
-		    *bp = (size_t)bp | 0xff;
+		    *bp = (size_t)bp & 0xff;
 	    break;
 	case    2:
 	    for (c = 0; c < reps; ++c)
 		for (sp = (uint16_t *)array; sp < (uint16_t *)end; ++sp)
-		    *sp = (size_t)sp | 0xffff;
+		    *sp = (size_t)sp & 0xffff;
 	    break;
 	case    4:
 	    for (c = 0; c < reps; ++c)
 		for (lp = (uint32_t *)array; lp < (uint32_t *)end; ++lp)
-		    *lp = (size_t)lp | 0xffffffff;
+		    *lp = (size_t)lp & 0xffffffff;
 	    break;
 	case    8:
 	    for (c = 0; c < reps; ++c)
