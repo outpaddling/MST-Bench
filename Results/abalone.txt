@@ -1,0 +1,200 @@
+
+This test should be run on a completely idle system.
+Make sure the load average near 0, and I/O activity
+is nonexistant.  Single user mode is the best option.
+
+Press return to begin...
+Hostname =	abalone.acadix.biz
+System =	Darwin 21.6.0 x86_64
+Compiler =	clang
+RAM =		2048 MiB
+
+File size =	4096 MiB
+CWD =		/Users/bacon
+Date/time =	Wed Mar 29 20:24:18 CDT 2023
+/dev/disk1s2s1 on / (apfs, sealed, local, read-only, journaled)
+devfs on /dev (devfs, local, nobrowse)
+/dev/disk1s5 on /System/Volumes/VM (apfs, local, noexec, journaled, noatime, nobrowse)
+/dev/disk1s3 on /System/Volumes/Preboot (apfs, local, journaled, nobrowse)
+/dev/disk1s6 on /System/Volumes/Update (apfs, local, journaled, nobrowse)
+/dev/disk1s1 on /System/Volumes/Data (apfs, local, journaled, nobrowse)
+map -hosts on /System/Volumes/Data/net (autofs, nosuid, automounted, nobrowse)
+map auto_home on /System/Volumes/Data/home (autofs, automounted, nobrowse)
+map /etc/automounts/coral on /System/Volumes/Data/coral/usr (autofs, automounted, nobrowse)
+Filesystem                  Size   Used  Avail Capacity iused      ifree %iused  Mounted on
+/dev/disk1s2s1             358Gi   14Gi  200Gi     7%  502144 2095126960    0%   /
+devfs                      194Ki  194Ki    0Bi   100%     672          0  100%   /dev
+/dev/disk1s5               358Gi  2.0Gi  200Gi     1%       3 2095126960    0%   /System/Volumes/VM
+/dev/disk1s3               358Gi  813Mi  200Gi     1%    5403 2095126960    0%   /System/Volumes/Preboot
+/dev/disk1s6               358Gi  6.2Mi  200Gi     1%      18 2095126960    0%   /System/Volumes/Update
+/dev/disk1s1               358Gi  139Gi  200Gi    42% 1327446 2095126960    0%   /System/Volumes/Data
+map -hosts                   0Bi    0Bi    0Bi   100%       0          0  100%   /System/Volumes/Data/net
+map auto_home                0Bi    0Bi    0Bi   100%       0          0  100%   /System/Volumes/Data/home
+map /etc/automounts/coral    0Bi    0Bi    0Bi   100%       0          0  100%   /System/Volumes/Data/coral/usr
+
+Mount options:
+
+
+Disk free:
+
+
+===========================================================
+Trial 1...
+===========================================================
+Testing small array, high cache hit-ratio...
+Filling a 256.00 KiB array 65536 times 1 bytes at a time...
+  256.00 KiB array         1.00 B blocks      6185.00 ms      2648.99 MiB/s
+
+Filling a 256.00 KiB array 65536 times 2 bytes at a time...
+  256.00 KiB array         2.00 B blocks      3305.00 ms      4957.34 MiB/s
+
+Filling a 256.00 KiB array 65536 times 4 bytes at a time...
+  256.00 KiB array         4.00 B blocks      1509.00 ms     10857.52 MiB/s
+
+Filling a 256.00 KiB array 65536 times 8 bytes at a time...
+  256.00 KiB array         8.00 B blocks       799.00 ms     20505.63 MiB/s
+
+Testing large array, low cache hit-ratio...
+Filling a 1.50 GiB array 8 times 1 bytes at a time...
+    1.50 GiB array         1.00 B blocks      5385.00 ms      2281.89 MiB/s
+
+Filling a 1.50 GiB array 8 times 2 bytes at a time...
+    1.50 GiB array         2.00 B blocks      3081.00 ms      3988.32 MiB/s
+
+Filling a 1.50 GiB array 8 times 4 bytes at a time...
+    1.50 GiB array         4.00 B blocks      2073.00 ms      5927.64 MiB/s
+
+Filling a 1.50 GiB array 8 times 8 bytes at a time...
+    1.50 GiB array         8.00 B blocks      1931.00 ms      6363.54 MiB/s
+
+Writing 1024 blocks of size 4194304 in sequential order...
+Total size = 4096 mebibytes.
+[                                                                ]****************************************************************
+    4.00 GiB write       4.00 MiB blocks     10700.00 ms       382.80 MiB/s
+
+Reading 1024 blocks of size 4194304 in sequential order...
+Total size = 4096 mebibytes.
+[                                                                ]****************************************************************
+    4.00 GiB read        4.00 MiB blocks      3182.00 ms      1287.24 MiB/s
+
+Writing 1024 blocks of size 4194304 in sequential order...
+Total size = 4096 mebibytes.
+[                                                                ]****************************************************************
+    4.00 GiB write       4.00 MiB blocks     11544.00 ms       354.82 MiB/s
+
+Reading 1024 blocks of size 4194304 in random order...
+Total size = 4096 mebibytes.
+[                                                                ]****************************************************************
+    4.00 GiB seek        4.00 MiB blocks      2350.00 ms      1742.98 MiB/s
+
+===========================================================
+Trial 2...
+===========================================================
+Testing small array, high cache hit-ratio...
+Filling a 256.00 KiB array 65536 times 1 bytes at a time...
+  256.00 KiB array         1.00 B blocks      6231.00 ms      2629.43 MiB/s
+
+Filling a 256.00 KiB array 65536 times 2 bytes at a time...
+  256.00 KiB array         2.00 B blocks      3318.00 ms      4937.91 MiB/s
+
+Filling a 256.00 KiB array 65536 times 4 bytes at a time...
+  256.00 KiB array         4.00 B blocks      1507.00 ms     10871.93 MiB/s
+
+Filling a 256.00 KiB array 65536 times 8 bytes at a time...
+  256.00 KiB array         8.00 B blocks       799.00 ms     20505.63 MiB/s
+
+Testing large array, low cache hit-ratio...
+Filling a 1.50 GiB array 8 times 1 bytes at a time...
+    1.50 GiB array         1.00 B blocks      5285.00 ms      2325.07 MiB/s
+
+Filling a 1.50 GiB array 8 times 2 bytes at a time...
+    1.50 GiB array         2.00 B blocks      3065.00 ms      4009.14 MiB/s
+
+Filling a 1.50 GiB array 8 times 4 bytes at a time...
+    1.50 GiB array         4.00 B blocks      2052.00 ms      5988.30 MiB/s
+
+Filling a 1.50 GiB array 8 times 8 bytes at a time...
+    1.50 GiB array         8.00 B blocks      1973.00 ms      6228.08 MiB/s
+
+Writing 1024 blocks of size 4194304 in sequential order...
+Total size = 4096 mebibytes.
+[                                                                ]****************************************************************
+    4.00 GiB write       4.00 MiB blocks     12677.00 ms       323.10 MiB/s
+
+Reading 1024 blocks of size 4194304 in sequential order...
+Total size = 4096 mebibytes.
+[                                                                ]****************************************************************
+    4.00 GiB read        4.00 MiB blocks      3295.00 ms      1243.10 MiB/s
+
+Writing 1024 blocks of size 4194304 in sequential order...
+Total size = 4096 mebibytes.
+[                                                                ]****************************************************************
+    4.00 GiB write       4.00 MiB blocks     11506.00 ms       355.99 MiB/s
+
+Reading 1024 blocks of size 4194304 in random order...
+Total size = 4096 mebibytes.
+[                                                                ]****************************************************************
+    4.00 GiB seek        4.00 MiB blocks      3031.00 ms      1351.37 MiB/s
+
+===========================================================
+Trial 3...
+===========================================================
+Testing small array, high cache hit-ratio...
+Filling a 256.00 KiB array 65536 times 1 bytes at a time...
+  256.00 KiB array         1.00 B blocks      6772.00 ms      2419.37 MiB/s
+
+Filling a 256.00 KiB array 65536 times 2 bytes at a time...
+  256.00 KiB array         2.00 B blocks      3401.00 ms      4817.41 MiB/s
+
+Filling a 256.00 KiB array 65536 times 4 bytes at a time...
+  256.00 KiB array         4.00 B blocks      1516.00 ms     10807.39 MiB/s
+
+Filling a 256.00 KiB array 65536 times 8 bytes at a time...
+  256.00 KiB array         8.00 B blocks       812.00 ms     20177.34 MiB/s
+
+Testing large array, low cache hit-ratio...
+Filling a 1.50 GiB array 8 times 1 bytes at a time...
+    1.50 GiB array         1.00 B blocks      5346.00 ms      2298.54 MiB/s
+
+Filling a 1.50 GiB array 8 times 2 bytes at a time...
+    1.50 GiB array         2.00 B blocks      3211.00 ms      3826.85 MiB/s
+
+Filling a 1.50 GiB array 8 times 4 bytes at a time...
+    1.50 GiB array         4.00 B blocks      2049.00 ms      5997.07 MiB/s
+
+Filling a 1.50 GiB array 8 times 8 bytes at a time...
+    1.50 GiB array         8.00 B blocks      1894.00 ms      6487.86 MiB/s
+
+Writing 1024 blocks of size 4194304 in sequential order...
+Total size = 4096 mebibytes.
+[                                                                ]****************************************************************
+    4.00 GiB write       4.00 MiB blocks      9388.00 ms       436.30 MiB/s
+
+Reading 1024 blocks of size 4194304 in sequential order...
+Total size = 4096 mebibytes.
+[                                                                ]****************************************************************
+    4.00 GiB read        4.00 MiB blocks      3035.00 ms      1349.59 MiB/s
+
+Writing 1024 blocks of size 4194304 in sequential order...
+Total size = 4096 mebibytes.
+[                                                                ]****************************************************************
+    4.00 GiB write       4.00 MiB blocks     11382.00 ms       359.87 MiB/s
+
+Reading 1024 blocks of size 4194304 in random order...
+Total size = 4096 mebibytes.
+[                                                                ]****************************************************************
+    4.00 GiB seek        4.00 MiB blocks      1304.00 ms      3141.10 MiB/s
+
+Averages of 3 trials:
+  256.00 KiB array         1.00 B blocks      6396.00 ms      2561.60 MiB/s
+  256.00 KiB array         2.00 B blocks      3341.00 ms      4903.92 MiB/s
+  256.00 KiB array         4.00 B blocks      1510.00 ms     10850.33 MiB/s
+  256.00 KiB array         8.00 B blocks       803.00 ms     20403.49 MiB/s
+    1.50 GiB array         1.00 B blocks      5338.00 ms      2301.99 MiB/s
+    1.50 GiB array         2.00 B blocks      3119.00 ms      3939.72 MiB/s
+    1.50 GiB array         4.00 B blocks      2058.00 ms      5970.85 MiB/s
+    1.50 GiB array         8.00 B blocks      1932.00 ms      6360.25 MiB/s
+    4.00 GiB write       4.00 MiB blocks     10921.00 ms       375.06 MiB/s
+    4.00 GiB read        4.00 MiB blocks      3170.00 ms      1292.11 MiB/s
+    4.00 GiB rewrite     4.00 MiB blocks     11477.00 ms       356.89 MiB/s
+    4.00 GiB seek        4.00 MiB blocks      2228.00 ms      1838.42 MiB/s
