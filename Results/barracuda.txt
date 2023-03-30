@@ -1,28 +1,21 @@
-FreeBSD barracuda.uits  bacon ~ 1011: mst-bench
+CPU: AMD Phenom(tm) II X4 955 Processor (3214.33-MHz K8-class CPU)
+FreeBSD/SMP: Multiprocessor System Detected: 4 CPUs
+FreeBSD/SMP: 1 package(s) x 4 core(s)
 
 This test should be run on a completely idle system.
 Make sure the load average near 0, and I/O activity
 is nonexistant.  Single user mode is the best option.
 
 Press return to begin...
+Hostname =      barracuda.acadix.biz
+System =        FreeBSD 13.1-RELEASE-p6 amd64
+Compiler =      cc
+RAM =           12245 MiB
 
-Custom tower workstation, Gigabyte motherboard, 4-disk RAID-Z
 
-Hostname =	barracuda.uits.uwm.edu
-System =	FreeBSD 12.2-RELEASE-p7 amd64
-Compiler =	cc
-RAM =		12245 MiB
-
-CPU: AMD Phenom(tm) II X4 955 Processor (3214.29-MHz K8-class CPU)
-FreeBSD/SMP: Multiprocessor System Detected: 4 CPUs
-FreeBSD/SMP: 1 package(s) x 4 core(s)
-
-File size =	24490 MiB
-CWD =		/usr/home/bacon
-Date/time =	Wed Jun 23 09:50:51 CDT 2021
-
-Disk hardware:
-
+File size =     24490 MiB
+CWD =           /usr/home/bacon/Prog/Src/MST-bench
+Date/time =     Wed Mar 29 20:21:48 CDT 2023
 Geom name: ada0
 Providers:
 1. Name: ada0
@@ -68,295 +61,246 @@ Providers:
    fwsectors: 63
    fwheads: 16
 
-Geom name: ada3
-Providers:
-1. Name: ada3
-   Mediasize: 4000787030016 (3.6T)
-   Sectorsize: 512
-   Stripesize: 4096
-   Stripeoffset: 0
-   Mode: r2w2e3
-   descr: ST4000DM000-1F2168
-   lunid: 5000c50066e040e9
-   ident: Z301P38L
-   rotationrate: 5900
-   fwsectors: 63
-   fwheads: 16
+zroot/ROOT/default on / (zfs, local, noatime, nfsv4acls)
+devfs on /dev (devfs)
+fdescfs on /dev/fd (fdescfs)
+procfs on /proc (procfs, local)
+zroot/usr/home on /usr/home (zfs, local, noatime, nfsv4acls)
+zroot/tmp on /tmp (zfs, local, noatime, nosuid, nfsv4acls)
+zroot/var/log on /var/log (zfs, local, noatime, noexec, nosuid, nfsv4acls)
+zroot/var/audit on /var/audit (zfs, local, noatime, noexec, nosuid, nfsv4acls)
+zroot/poudriere/ports/default on /usr/local/poudriere/ports/default (zfs, local, noatime, nfsv4acls)
+zroot/poudriere/jails/13-1-amd64 on /usr/local/poudriere/jails/13-1-amd64 (zfs, local, noatime, nfsv4acls)
+zroot/var/mail on /var/mail (zfs, local, nfsv4acls)
+zroot/var/crash on /var/crash (zfs, local, noatime, noexec, nosuid, nfsv4acls)
+zroot/usr/src on /usr/src (zfs, local, noatime, nfsv4acls)
+zroot on /zroot (zfs, local, noatime, nfsv4acls)
+zroot/poudriere/jails/12-3-amd64 on /usr/local/poudriere/jails/12-3-amd64 (zfs, local, noatime, nfsv4acls)
+zroot/var/tmp on /var/tmp (zfs, local, noatime, nosuid, nfsv4acls)
+zroot/usr/ports on /usr/ports (zfs, local, noatime, nosuid, nfsv4acls)
+zroot/poudriere on /zroot/poudriere (zfs, local, noatime, nfsv4acls)
+zroot/poudriere/ports on /zroot/poudriere/ports (zfs, local, noatime, nfsv4acls)
+zroot/poudriere/jails on /zroot/poudriere/jails (zfs, local, noatime, nfsv4acls)
+map -hosts on /net (autofs)
+Filesystem                          Size    Used   Avail Capacity  Mounted on
+zroot/ROOT/default                  5.3T    8.2G    5.3T     0%    /
+devfs                               1.0K    1.0K      0B   100%    /dev
+fdescfs                             1.0K    1.0K      0B   100%    /dev/fd
+procfs                              4.0K    4.0K      0B   100%    /proc
+zroot/usr/home                      5.3T     39G    5.3T     1%    /usr/home
+zroot/tmp                           5.3T    149K    5.3T     0%    /tmp
+zroot/var/log                       5.3T    581K    5.3T     0%    /var/log
+zroot/var/audit                     5.3T    128K    5.3T     0%    /var/audit
+zroot/poudriere/ports/default       5.3T    1.2G    5.3T     0%    /usr/local/poudriere/ports/default
+zroot/poudriere/jails/13-1-amd64    5.3T    1.7G    5.3T     0%    /usr/local/poudriere/jails/13-1-amd64
+zroot/var/mail                      5.3T    203K    5.3T     0%    /var/mail
+zroot/var/crash                     5.3T    128K    5.3T     0%    /var/crash
+zroot/usr/src                       5.3T    916M    5.3T     0%    /usr/src
+zroot                               5.3T    128K    5.3T     0%    /zroot
+zroot/poudriere/jails/12-3-amd64    5.3T    128K    5.3T     0%    /usr/local/poudriere/jails/12-3-amd64
+zroot/var/tmp                       5.3T    128K    5.3T     0%    /var/tmp
+zroot/usr/ports                     5.3T    2.4G    5.3T     0%    /usr/ports
+zroot/poudriere                     5.3T    139K    5.3T     0%    /zroot/poudriere
+zroot/poudriere/ports               5.3T    128K    5.3T     0%    /zroot/poudriere/ports
+zroot/poudriere/jails               5.3T    128K    5.3T     0%    /zroot/poudriere/jails
+map -hosts                            0B      0B      0B   100%    /net
+zroot/ROOT/default on / (zfs, local, noatime, nfsv4acls)
+zroot/usr/home on /usr/home (zfs, local, noatime, nfsv4acls)
+zroot/tmp on /tmp (zfs, local, noatime, nosuid, nfsv4acls)
+zroot/var/log on /var/log (zfs, local, noatime, noexec, nosuid, nfsv4acls)
+zroot/var/audit on /var/audit (zfs, local, noatime, noexec, nosuid, nfsv4acls)
+zroot/poudriere/ports/default on /usr/local/poudriere/ports/default (zfs, local, noatime, nfsv4acls)
+zroot/poudriere/jails/13-1-amd64 on /usr/local/poudriere/jails/13-1-amd64 (zfs, local, noatime, nfsv4acls)
+zroot/var/mail on /var/mail (zfs, local, nfsv4acls)
+zroot/var/crash on /var/crash (zfs, local, noatime, noexec, nosuid, nfsv4acls)
+zroot/usr/src on /usr/src (zfs, local, noatime, nfsv4acls)
+zroot on /zroot (zfs, local, noatime, nfsv4acls)
+zroot/poudriere/jails/12-3-amd64 on /usr/local/poudriere/jails/12-3-amd64 (zfs, local, noatime, nfsv4acls)
+zroot/var/tmp on /var/tmp (zfs, local, noatime, nosuid, nfsv4acls)
+zroot/usr/ports on /usr/ports (zfs, local, noatime, nosuid, nfsv4acls)
+zroot/poudriere on /zroot/poudriere (zfs, local, noatime, nfsv4acls)
+zroot/poudriere/ports on /zroot/poudriere/ports (zfs, local, noatime, nfsv4acls)
+zroot/poudriere/jails on /zroot/poudriere/jails (zfs, local, noatime, nfsv4acls)
+  pool: zroot
+ state: ONLINE
+config:
 
-Geom name: cd0
-Providers:
-1. Name: cd0
-   Mediasize: 0 (0B)
-   Sectorsize: 2048
-   Mode: r0w0e0
-   descr: ASUS DRW-24B1ST
-   ident: (null)
-   rotationrate: unknown
-   fwsectors: 0
-   fwheads: 0
+        NAME        STATE     READ WRITE CKSUM
+        zroot       ONLINE       0     0     0
+          raidz1-0  ONLINE       0     0     0
+            ada0p3  ONLINE       0     0     0
+            ada1p3  ONLINE       0     0     0
+            ada2p3  ONLINE       0     0     0
+
+errors: No known data errors
+
+Disk hardware:
 
 
 
 Mount options:
 
-zroot/ROOT/default on / (zfs, local, noatime, nfsv4acls)
-devfs on /dev (devfs, local, multilabel)
-fdescfs on /dev/fd (fdescfs)
-procfs on /proc (procfs, local)
-linprocfs on /compat/linux/proc (linprocfs, local)
-tmpfs on /compat/linux/dev/shm (tmpfs, local)
-linsysfs on /compat/linux/sys (linsysfs, local)
-zroot/usr/home on /usr/home (zfs, NFS exported, local, noatime, nfsv4acls)
-zroot/var/crash on /var/crash (zfs, local, noatime, noexec, nosuid, nfsv4acls)
-zroot/tmp on /tmp (zfs, local, noatime, nosuid, nfsv4acls)
-zroot/var/log on /var/log (zfs, local, noatime, noexec, nosuid, nfsv4acls)
-zroot/sharedapps on /sharedapps (zfs, local, noatime, nfsv4acls)
-zroot/var/audit on /var/audit (zfs, local, noatime, noexec, nosuid, nfsv4acls)
-zroot/var/mail on /var/mail (zfs, local, nfsv4acls)
-zroot on /zroot (zfs, local, noatime, nfsv4acls)
-zroot/poudriere/jails/12-1-amd64 on /usr/local/poudriere/jails/12-1-amd64 (zfs, local, noatime, nfsv4acls)
-zroot/usr/src on /usr/src (zfs, local, noatime, nfsv4acls)
-zroot/barracuda on /barracuda (zfs, NFS exported, local, noatime, nfsv4acls)
-zroot/poudriere/jails/12-1-i386 on /usr/local/poudriere/jails/12-1-i386 (zfs, local, noatime, nfsv4acls)
-zroot/usr/ports on /usr/ports (zfs, local, noatime, nosuid, nfsv4acls)
-zroot/poudriere/jails/11-3-amd64 on /usr/local/poudriere/jails/11-3-amd64 (zfs, local, noatime, nfsv4acls)
-zroot/poudriere on /zroot/poudriere (zfs, local, noatime, nfsv4acls)
-zroot/poudriere/jails/11-3-i386 on /usr/local/poudriere/jails/11-3-i386 (zfs, local, noatime, nfsv4acls)
-zroot/var/tmp on /var/tmp (zfs, local, noatime, nosuid, nfsv4acls)
-zroot/poudriere/ports on /zroot/poudriere/ports (zfs, local, noatime, nfsv4acls)
-zroot/poudriere/jails on /zroot/poudriere/jails (zfs, local, noatime, nfsv4acls)
-devfs on /compat/linux/dev (devfs, local, multilabel)
-fdescfs on /compat/linux/dev/fd (fdescfs)
-tmpfs on /compat/linux/dev/shm (tmpfs, local)
-danio:/danio on /danio (nfs, nfsv4acls)
-unixdev1:/unixdev1 on /unixdev1 (nfs, nfsv4acls)
 
 Disk free:
 
-Filesystem                          Size    Used   Avail Capacity  Mounted on
-zroot/ROOT/default                  921G     71G    850G     8%    /
-devfs                               1.0K    1.0K      0B   100%    /dev
-fdescfs                             1.0K    1.0K      0B   100%    /dev/fd
-procfs                              4.0K    4.0K      0B   100%    /proc
-linprocfs                           4.0K    4.0K      0B   100%    /compat/linux/proc
-tmpfs                                12G    4.0K     12G     0%    /compat/linux/dev/shm
-linsysfs                            4.0K    4.0K      0B   100%    /compat/linux/sys
-zroot/usr/home                      1.3T    474G    850G    36%    /usr/home
-zroot/var/crash                     850G    128K    850G     0%    /var/crash
-zroot/tmp                           850G    7.6M    850G     0%    /tmp
-zroot/var/log                       852G    1.5G    850G     0%    /var/log
-zroot/sharedapps                    878G     28G    850G     3%    /sharedapps
-zroot/var/audit                     850G    128K    850G     0%    /var/audit
-zroot/var/mail                      850G    4.7M    850G     0%    /var/mail
-zroot                               850G    128K    850G     0%    /zroot
-zroot/poudriere/jails/12-1-amd64    850G    128K    850G     0%    /usr/local/poudriere/jails/12-1-amd64
-zroot/usr/src                       851G    908M    850G     0%    /usr/src
-zroot/barracuda                     7.1T    6.3T    850G    88%    /barracuda
-zroot/poudriere/jails/12-1-i386     850G    128K    850G     0%    /usr/local/poudriere/jails/12-1-i386
-zroot/usr/ports                     853G    2.4G    850G     0%    /usr/ports
-zroot/poudriere/jails/11-3-amd64    850G    128K    850G     0%    /usr/local/poudriere/jails/11-3-amd64
-zroot/poudriere                     850G    128K    850G     0%    /zroot/poudriere
-zroot/poudriere/jails/11-3-i386     850G    128K    850G     0%    /usr/local/poudriere/jails/11-3-i386
-zroot/var/tmp                       850G    146K    850G     0%    /var/tmp
-zroot/poudriere/ports               850G    128K    850G     0%    /zroot/poudriere/ports
-zroot/poudriere/jails               850G    128K    850G     0%    /zroot/poudriere/jails
-devfs                               1.0K    1.0K      0B   100%    /compat/linux/dev
-fdescfs                             1.0K    1.0K      0B   100%    /compat/linux/dev/fd
-tmpfs                                12G    4.0K     12G     0%    /compat/linux/dev/shm
-danio:/danio                        810G    637G    173G    79%    /danio
-unixdev1:/unixdev1                  2.9T     45G    2.9T     1%    /unixdev1
-zroot/ROOT/default on / (zfs, local, noatime, nfsv4acls)
-zroot/usr/home on /usr/home (zfs, NFS exported, local, noatime, nfsv4acls)
-zroot/var/crash on /var/crash (zfs, local, noatime, noexec, nosuid, nfsv4acls)
-zroot/tmp on /tmp (zfs, local, noatime, nosuid, nfsv4acls)
-zroot/var/log on /var/log (zfs, local, noatime, noexec, nosuid, nfsv4acls)
-zroot/sharedapps on /sharedapps (zfs, local, noatime, nfsv4acls)
-zroot/var/audit on /var/audit (zfs, local, noatime, noexec, nosuid, nfsv4acls)
-zroot/var/mail on /var/mail (zfs, local, nfsv4acls)
-zroot on /zroot (zfs, local, noatime, nfsv4acls)
-zroot/poudriere/jails/12-1-amd64 on /usr/local/poudriere/jails/12-1-amd64 (zfs, local, noatime, nfsv4acls)
-zroot/usr/src on /usr/src (zfs, local, noatime, nfsv4acls)
-zroot/barracuda on /barracuda (zfs, NFS exported, local, noatime, nfsv4acls)
-zroot/poudriere/jails/12-1-i386 on /usr/local/poudriere/jails/12-1-i386 (zfs, local, noatime, nfsv4acls)
-zroot/usr/ports on /usr/ports (zfs, local, noatime, nosuid, nfsv4acls)
-zroot/poudriere/jails/11-3-amd64 on /usr/local/poudriere/jails/11-3-amd64 (zfs, local, noatime, nfsv4acls)
-zroot/poudriere on /zroot/poudriere (zfs, local, noatime, nfsv4acls)
-zroot/poudriere/jails/11-3-i386 on /usr/local/poudriere/jails/11-3-i386 (zfs, local, noatime, nfsv4acls)
-zroot/var/tmp on /var/tmp (zfs, local, noatime, nosuid, nfsv4acls)
-zroot/poudriere/ports on /zroot/poudriere/ports (zfs, local, noatime, nfsv4acls)
-zroot/poudriere/jails on /zroot/poudriere/jails (zfs, local, noatime, nfsv4acls)
-  pool: zroot
- state: ONLINE
-  scan: scrub repaired 0 in 0 days 03:55:42 with 0 errors on Thu Apr 16 18:32:27 2020
-config:
-
-	NAME        STATE     READ WRITE CKSUM
-	zroot       ONLINE       0     0     0
-	  raidz1-0  ONLINE       0     0     0
-	    ada0p3  ONLINE       0     0     0
-	    ada1p3  ONLINE       0     0     0
-	    ada2p3  ONLINE       0     0     0
-	    ada3p3  ONLINE       0     0     0
-
-errors: No known data errors
 
 ===========================================================
 Trial 1...
 ===========================================================
 Testing small array, high cache hit-ratio...
-Filling a 64.00 KiB array 16384 times 1 bytes at a time...
-   64.00 KiB array         1.00 B blocks        21.00 ms     48761.90 MiB/s
+Filling a 256.00 KiB array 65536 times 1 bytes at a time...
+  256.00 KiB array         1.00 B blocks     10844.00 ms      1510.88 MiB/s
 
-Filling a 64.00 KiB array 16384 times 2 bytes at a time...
-   64.00 KiB array         2.00 B blocks        21.00 ms     48761.90 MiB/s
+Filling a 256.00 KiB array 65536 times 2 bytes at a time...
+  256.00 KiB array         2.00 B blocks      5354.00 ms      3060.14 MiB/s
 
-Filling a 64.00 KiB array 16384 times 4 bytes at a time...
-   64.00 KiB array         4.00 B blocks        21.00 ms     48761.90 MiB/s
+Filling a 256.00 KiB array 65536 times 4 bytes at a time...
+  256.00 KiB array         4.00 B blocks      2698.00 ms      6072.65 MiB/s
 
-Filling a 64.00 KiB array 16384 times 8 bytes at a time...
-   64.00 KiB array         8.00 B blocks       141.00 ms      7262.41 MiB/s
+Filling a 256.00 KiB array 65536 times 8 bytes at a time...
+  256.00 KiB array         8.00 B blocks      1357.00 ms     12073.69 MiB/s
 
 Testing large array, low cache hit-ratio...
-Filling a 512.00 MiB array 5 times 1 bytes at a time...
-  512.00 MiB array         1.00 B blocks       740.00 ms      3459.46 MiB/s
+Filling a 2.00 GiB array 8 times 1 bytes at a time...
+    2.00 GiB array         1.00 B blocks     12153.00 ms      1348.14 MiB/s
 
-Filling a 512.00 MiB array 5 times 2 bytes at a time...
-  512.00 MiB array         2.00 B blocks       541.00 ms      4731.98 MiB/s
+Filling a 2.00 GiB array 8 times 2 bytes at a time...
+    2.00 GiB array         2.00 B blocks      6500.00 ms      2520.62 MiB/s
 
-Filling a 512.00 MiB array 5 times 4 bytes at a time...
-  512.00 MiB array         4.00 B blocks       536.00 ms      4776.12 MiB/s
+Filling a 2.00 GiB array 8 times 4 bytes at a time...
+    2.00 GiB array         4.00 B blocks      4552.00 ms      3599.30 MiB/s
 
-Filling a 512.00 MiB array 5 times 8 bytes at a time...
-  512.00 MiB array         8.00 B blocks       686.00 ms      3731.78 MiB/s
+Filling a 2.00 GiB array 8 times 8 bytes at a time...
+    2.00 GiB array         8.00 B blocks      3711.00 ms      4414.98 MiB/s
 
 Writing 6122 blocks of size 4194304 in sequential order...
 Total size = 24488 mebibytes.
 [****************************************************************]
-   23.92 GiB write       4.00 MiB blocks    145072.00 ms       168.82 MiB/s
+   23.92 GiB write       4.00 MiB blocks    103706.00 ms       236.16 MiB/s
 
 Reading 6122 blocks of size 4194304 in sequential order...
 Total size = 24488 mebibytes.
 [****************************************************************]
-   23.92 GiB read        4.00 MiB blocks     70112.00 ms       349.31 MiB/s
+   23.92 GiB read        4.00 MiB blocks     89453.00 ms       273.78 MiB/s
 
 Writing 6122 blocks of size 4194304 in sequential order...
 Total size = 24488 mebibytes.
 [****************************************************************]
-   23.92 GiB write       4.00 MiB blocks    143584.00 ms       170.57 MiB/s
+   23.92 GiB write       4.00 MiB blocks    108355.00 ms       226.02 MiB/s
 
 Reading 6122 blocks of size 4194304 in random order...
 Total size = 24488 mebibytes.
 [****************************************************************]
-   23.92 GiB seek        4.00 MiB blocks    221098.00 ms       110.77 MiB/s
+   23.92 GiB seek        4.00 MiB blocks    182612.00 ms       134.11 MiB/s
 
 ===========================================================
 Trial 2...
 ===========================================================
 Testing small array, high cache hit-ratio...
-Filling a 64.00 KiB array 16384 times 1 bytes at a time...
-   64.00 KiB array         1.00 B blocks        21.00 ms     48761.90 MiB/s
+Filling a 256.00 KiB array 65536 times 1 bytes at a time...
+  256.00 KiB array         1.00 B blocks     10843.00 ms      1511.02 MiB/s
 
-Filling a 64.00 KiB array 16384 times 2 bytes at a time...
-   64.00 KiB array         2.00 B blocks        21.00 ms     48761.90 MiB/s
+Filling a 256.00 KiB array 65536 times 2 bytes at a time...
+  256.00 KiB array         2.00 B blocks      5359.00 ms      3057.29 MiB/s
 
-Filling a 64.00 KiB array 16384 times 4 bytes at a time...
-   64.00 KiB array         4.00 B blocks        21.00 ms     48761.90 MiB/s
+Filling a 256.00 KiB array 65536 times 4 bytes at a time...
+  256.00 KiB array         4.00 B blocks      2698.00 ms      6072.65 MiB/s
 
-Filling a 64.00 KiB array 16384 times 8 bytes at a time...
-   64.00 KiB array         8.00 B blocks       142.00 ms      7211.27 MiB/s
+Filling a 256.00 KiB array 65536 times 8 bytes at a time...
+  256.00 KiB array         8.00 B blocks      1351.00 ms     12127.31 MiB/s
 
 Testing large array, low cache hit-ratio...
-Filling a 512.00 MiB array 5 times 1 bytes at a time...
-  512.00 MiB array         1.00 B blocks       544.00 ms      4705.88 MiB/s
+Filling a 2.00 GiB array 8 times 1 bytes at a time...
+    2.00 GiB array         1.00 B blocks     11308.00 ms      1448.89 MiB/s
 
-Filling a 512.00 MiB array 5 times 2 bytes at a time...
-  512.00 MiB array         2.00 B blocks       580.00 ms      4413.79 MiB/s
+Filling a 2.00 GiB array 8 times 2 bytes at a time...
+    2.00 GiB array         2.00 B blocks      6518.00 ms      2513.65 MiB/s
 
-Filling a 512.00 MiB array 5 times 4 bytes at a time...
-  512.00 MiB array         4.00 B blocks       716.00 ms      3575.42 MiB/s
+Filling a 2.00 GiB array 8 times 4 bytes at a time...
+    2.00 GiB array         4.00 B blocks      4551.00 ms      3600.09 MiB/s
 
-Filling a 512.00 MiB array 5 times 8 bytes at a time...
-  512.00 MiB array         8.00 B blocks       690.00 ms      3710.14 MiB/s
+Filling a 2.00 GiB array 8 times 8 bytes at a time...
+    2.00 GiB array         8.00 B blocks      3723.00 ms      4400.75 MiB/s
 
 Writing 6122 blocks of size 4194304 in sequential order...
 Total size = 24488 mebibytes.
 [****************************************************************]
-   23.92 GiB write       4.00 MiB blocks    151076.00 ms       162.11 MiB/s
+   23.92 GiB write       4.00 MiB blocks    105279.00 ms       232.63 MiB/s
 
 Reading 6122 blocks of size 4194304 in sequential order...
 Total size = 24488 mebibytes.
 [****************************************************************]
-   23.92 GiB read        4.00 MiB blocks     63593.00 ms       385.12 MiB/s
+   23.92 GiB read        4.00 MiB blocks     92675.00 ms       264.27 MiB/s
 
 Writing 6122 blocks of size 4194304 in sequential order...
 Total size = 24488 mebibytes.
 [****************************************************************]
-   23.92 GiB write       4.00 MiB blocks    151333.00 ms       161.83 MiB/s
+   23.92 GiB write       4.00 MiB blocks    110733.00 ms       221.17 MiB/s
 
 Reading 6122 blocks of size 4194304 in random order...
 Total size = 24488 mebibytes.
 [****************************************************************]
-   23.92 GiB seek        4.00 MiB blocks    233917.00 ms       104.70 MiB/s
+   23.92 GiB seek        4.00 MiB blocks    218625.00 ms       112.02 MiB/s
 
 ===========================================================
 Trial 3...
 ===========================================================
 Testing small array, high cache hit-ratio...
-Filling a 64.00 KiB array 16384 times 1 bytes at a time...
-   64.00 KiB array         1.00 B blocks        33.00 ms     31030.30 MiB/s
+Filling a 256.00 KiB array 65536 times 1 bytes at a time...
+  256.00 KiB array         1.00 B blocks     10826.00 ms      1513.39 MiB/s
 
-Filling a 64.00 KiB array 16384 times 2 bytes at a time...
-   64.00 KiB array         2.00 B blocks        33.00 ms     31030.30 MiB/s
+Filling a 256.00 KiB array 65536 times 2 bytes at a time...
+  256.00 KiB array         2.00 B blocks      5365.00 ms      3053.87 MiB/s
 
-Filling a 64.00 KiB array 16384 times 4 bytes at a time...
-   64.00 KiB array         4.00 B blocks        33.00 ms     31030.30 MiB/s
+Filling a 256.00 KiB array 65536 times 4 bytes at a time...
+  256.00 KiB array         4.00 B blocks      2701.00 ms      6065.90 MiB/s
 
-Filling a 64.00 KiB array 16384 times 8 bytes at a time...
-   64.00 KiB array         8.00 B blocks       215.00 ms      4762.79 MiB/s
+Filling a 256.00 KiB array 65536 times 8 bytes at a time...
+  256.00 KiB array         8.00 B blocks      1351.00 ms     12127.31 MiB/s
 
 Testing large array, low cache hit-ratio...
-Filling a 512.00 MiB array 5 times 1 bytes at a time...
-  512.00 MiB array         1.00 B blocks       543.00 ms      4714.55 MiB/s
+Filling a 2.00 GiB array 8 times 1 bytes at a time...
+    2.00 GiB array         1.00 B blocks     11309.00 ms      1448.76 MiB/s
 
-Filling a 512.00 MiB array 5 times 2 bytes at a time...
-  512.00 MiB array         2.00 B blocks       537.00 ms      4767.23 MiB/s
+Filling a 2.00 GiB array 8 times 2 bytes at a time...
+    2.00 GiB array         2.00 B blocks      6499.00 ms      2521.00 MiB/s
 
-Filling a 512.00 MiB array 5 times 4 bytes at a time...
-  512.00 MiB array         4.00 B blocks       536.00 ms      4776.12 MiB/s
+Filling a 2.00 GiB array 8 times 4 bytes at a time...
+    2.00 GiB array         4.00 B blocks      4581.00 ms      3576.51 MiB/s
 
-Filling a 512.00 MiB array 5 times 8 bytes at a time...
-  512.00 MiB array         8.00 B blocks       688.00 ms      3720.93 MiB/s
+Filling a 2.00 GiB array 8 times 8 bytes at a time...
+    2.00 GiB array         8.00 B blocks      3734.00 ms      4387.79 MiB/s
 
 Writing 6122 blocks of size 4194304 in sequential order...
 Total size = 24488 mebibytes.
 [****************************************************************]
-   23.92 GiB write       4.00 MiB blocks    139183.00 ms       175.96 MiB/s
+   23.92 GiB write       4.00 MiB blocks    107044.00 ms       228.79 MiB/s
 
 Reading 6122 blocks of size 4194304 in sequential order...
 Total size = 24488 mebibytes.
 [****************************************************************]
-   23.92 GiB read        4.00 MiB blocks     55899.00 ms       438.13 MiB/s
+   23.92 GiB read        4.00 MiB blocks     96057.00 ms       254.96 MiB/s
 
 Writing 6122 blocks of size 4194304 in sequential order...
 Total size = 24488 mebibytes.
 [****************************************************************]
-   23.92 GiB write       4.00 MiB blocks    141209.00 ms       173.44 MiB/s
+   23.92 GiB write       4.00 MiB blocks    112680.00 ms       217.35 MiB/s
 
 Reading 6122 blocks of size 4194304 in random order...
 Total size = 24488 mebibytes.
 [****************************************************************]
-   23.92 GiB seek        4.00 MiB blocks    204254.00 ms       119.90 MiB/s
+   23.92 GiB seek        4.00 MiB blocks    184951.00 ms       132.42 MiB/s
 
 Averages of 3 trials:
-   64.00 KiB array         1.00 B blocks        25.00 ms     40960.00 MiB/s
-   64.00 KiB array         2.00 B blocks        25.00 ms     40960.00 MiB/s
-   64.00 KiB array         4.00 B blocks        25.00 ms     40960.00 MiB/s
-   64.00 KiB array         8.00 B blocks       166.00 ms      6168.67 MiB/s
-  512.00 MiB array         1.00 B blocks       609.00 ms      4203.61 MiB/s
-  512.00 MiB array         2.00 B blocks       552.00 ms      4637.68 MiB/s
-  512.00 MiB array         4.00 B blocks       596.00 ms      4295.30 MiB/s
-  512.00 MiB array         8.00 B blocks       688.00 ms      3720.93 MiB/s
-   23.92 GiB write       4.00 MiB blocks    145110.00 ms       168.77 MiB/s
-   23.92 GiB read        4.00 MiB blocks     63201.00 ms       387.51 MiB/s
-   23.92 GiB rewrite     4.00 MiB blocks    145375.00 ms       168.47 MiB/s
-   23.92 GiB seek        4.00 MiB blocks    219756.00 ms       111.45 MiB/s
+  256.00 KiB array         1.00 B blocks     10837.00 ms      1511.86 MiB/s
+  256.00 KiB array         2.00 B blocks      5359.00 ms      3057.29 MiB/s
+  256.00 KiB array         4.00 B blocks      2699.00 ms      6070.40 MiB/s
+  256.00 KiB array         8.00 B blocks      1353.00 ms     12109.39 MiB/s
+    2.00 GiB array         1.00 B blocks     11590.00 ms      1413.63 MiB/s
+    2.00 GiB array         2.00 B blocks      6505.00 ms      2518.68 MiB/s
+    2.00 GiB array         4.00 B blocks      4561.00 ms      3592.19 MiB/s
+    2.00 GiB array         8.00 B blocks      3722.00 ms      4401.93 MiB/s
+   23.92 GiB write       4.00 MiB blocks    105343.00 ms       232.49 MiB/s
+   23.92 GiB read        4.00 MiB blocks     92728.00 ms       264.12 MiB/s
+   23.92 GiB rewrite     4.00 MiB blocks    110589.00 ms       221.46 MiB/s
+   23.92 GiB seek        4.00 MiB blocks    195396.00 ms       125.34 MiB/s
