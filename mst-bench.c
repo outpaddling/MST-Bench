@@ -349,30 +349,42 @@ unsigned long   array_test(unsigned long array_size, int reps, int wsize)
      *  This code may need to be updated as optimizers get smarter.
      *  Optimizer should be used to reflect the way people really use
      *  a compiler.
+     *
+     *  Currently: Assign a piece of the address in the pointer to the
+     *  array.  It's not constant and quicker than a random number
+     *  generator.
      */
+    
     switch(wsize)
     {
 	case    1:
-	    /* Byte */
+	    /* One byte at a time */
 	    for (c = 0; c < reps; ++c)
 		for (bp = (uint8_t *)array; bp < end; ++bp)
-		    *bp = (size_t)bp & 0xff;
+		    *bp = (size_t)bp;
 	    break;
+	    
 	case    2:
+	    /* Two bytes at a time */
 	    for (c = 0; c < reps; ++c)
 		for (sp = (uint16_t *)array; sp < (uint16_t *)end; ++sp)
-		    *sp = (size_t)sp & 0xffff;
+		    *sp = (size_t)sp;
 	    break;
+
 	case    4:
+	    /* Four bytes at a time */
 	    for (c = 0; c < reps; ++c)
 		for (lp = (uint32_t *)array; lp < (uint32_t *)end; ++lp)
-		    *lp = (size_t)lp & 0xffffffff;
+		    *lp = (size_t)lp;
 	    break;
+	
 	case    8:
+	    /* Eight bytes at a time */
 	    for (c = 0; c < reps; ++c)
 		for (qp = (uint64_t *)array; qp < (uint64_t *)end; ++qp)
 		    *qp = (uint64_t)qp;
 	    break;
+	
 	default:
 	    fprintf(stderr, "Invalid wsize: %d\n", wsize);
 	    exit(1);
