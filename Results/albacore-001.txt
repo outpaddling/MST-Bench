@@ -1,0 +1,299 @@
+This test should be run on a completely idle system.
+Make sure the load average near 0, and I/O activity
+is nonexistant.  Single user mode is the best option.
+
+Press return to begin...
+
+Hostname =      compute-001.albacore
+System =        FreeBSD 13.1-RELEASE-p6 amd64
+Compiler =      cc
+RAM =           65475 MiB
+
+CPU: AMD Opteron(tm) Processor 4386                  (3100.21-MHz K8-class CPU)
+FreeBSD/SMP: Multiprocessor System Detected: 16 CPUs
+FreeBSD/SMP: 2 package(s) x 8 core(s)
+
+File size =     130950 MiB
+CWD =           /compute-001/bacon
+Date/time =     Thu Mar 30 18:19:42 CDT 2023
+
+Disk hardware:
+
+Geom name: mfid0
+Providers:
+1. Name: mfid0
+   Mediasize: 9000103968768 (8.2T)
+   Sectorsize: 512
+   Mode: r3w3e5
+   descr: (null)
+   ident: (null)
+   rotationrate: unknown
+   fwsectors: 63
+   fwheads: 255
+
+Geom name: cd0
+Providers:
+1. Name: cd0
+   Mediasize: 0 (0B)
+   Sectorsize: 2048
+   Mode: r0w0e0
+   descr: TEAC DVD-ROM DV-28SW
+   ident: (null)
+   rotationrate: unknown
+   fwsectors: 0
+   fwheads: 0
+
+mfi0 Adapter:
+    Product Name: PERC H700 Adapter
+   Serial Number: 27I00JU
+	Firmware: 12.10.7-0001
+     RAID Levels: JBOD, RAID0, RAID1, RAID5, RAID6, RAID10, RAID50
+  Battery Backup: present
+	   NVRAM: 32K
+  Onboard Memory: 512M
+  Minimum Stripe: 8K
+  Maximum Stripe: 1M
+
+mfi0 Configuration: 1 arrays, 1 volumes, 0 spares
+    array 0 of 4 drives:
+	drive  0 ( 2795G) ONLINE <SEAGATE ST3000NXCLAR3000 GS18 serial=Z1Y293MM> SAS
+	drive  1 ( 2795G) ONLINE <SEAGATE ST3000NXCLAR3000 GS18 serial=Z1Y287T5> SAS
+	drive  2 ( 2795G) ONLINE <SEAGATE ST3000NXCLAR3000 GS18 serial=Z1Y287QW> SAS
+	drive  3 ( 2795G) ONLINE <SEAGATE ST3000NM0023 0004 serial=Z1Y1NRLZ> SCSI-6
+    volume mfid0 (8382G) RAID-5 64K OPTIMAL <boot> spans:
+	array 0
+
+Mount options:
+
+/dev/mfid0p2 on / (ufs, local, soft-updates, journaled soft-updates)
+devfs on /dev (devfs)
+fdescfs on /dev/fd (fdescfs)
+procfs on /proc (procfs, local)
+zroot/var/log on /var/log (zfs, local, nfsv4acls)
+zroot/var/crash on /var/crash (zfs, local, nfsv4acls)
+zroot/tmp on /tmp (zfs, local, nfsv4acls)
+zroot/var/tmp on /var/tmp (zfs, local, nfsv4acls)
+zroot/compute-001 on /compute-001 (zfs, NFS exported, local, nfsv4acls)
+zroot/var/mail on /var/mail (zfs, local, nfsv4acls)
+zroot/var/cache on /var/cache (zfs, local, nfsv4acls)
+zroot/var/audit on /var/audit (zfs, local, nfsv4acls)
+zroot/poudriere/ports/default on /usr/local/poudriere/ports/default (zfs, local, noatime, nfsv4acls)
+zroot/poudriere/jails/13-0-amd64 on /usr/local/poudriere/jails/13-0-amd64 (zfs, local, noatime, nfsv4acls)
+zroot/poudriere/jails/12-3-amd64 on /usr/local/poudriere/jails/12-3-amd64 (zfs, local, noatime, nfsv4acls)
+zroot/usr/ports on /usr/ports (zfs, local, nfsv4acls)
+head:/usr/home on /usr/home (nfs)
+head:/var/cache/pkg on /var/cache/pkg (nfs)
+linprocfs on /compat/linux/proc (linprocfs, local)
+linsysfs on /compat/linux/sys (linsysfs, local)
+devfs on /compat/linux/dev (devfs)
+fdescfs on /compat/linux/dev/fd (fdescfs)
+tmpfs on /compat/linux/dev/shm (tmpfs, local)
+
+Disk free:
+
+Filesystem                          Size    Used   Avail Capacity  Mounted on
+/dev/mfid0p2                         31G     13G     15G    47%    /
+devfs                               1.0K    1.0K      0B   100%    /dev
+fdescfs                             1.0K    1.0K      0B   100%    /dev/fd
+procfs                              4.0K    4.0K      0B   100%    /proc
+zroot/var/log                       2.6T     17M    2.6T     0%    /var/log
+zroot/var/crash                     2.6T     24K    2.6T     0%    /var/crash
+zroot/tmp                           2.6T     28K    2.6T     0%    /tmp
+zroot/var/tmp                       2.6T     25K    2.6T     0%    /var/tmp
+zroot/compute-001                   8.0T    5.4T    2.6T    68%    /compute-001
+zroot/var/mail                      2.6T     94K    2.6T     0%    /var/mail
+zroot/var/cache                     2.6T     25K    2.6T     0%    /var/cache
+zroot/var/audit                     2.6T     25K    2.6T     0%    /var/audit
+zroot/poudriere/ports/default       2.6T    352M    2.6T     0%    /usr/local/poudriere/ports/default
+zroot/poudriere/jails/13-0-amd64    2.6T    1.2G    2.6T     0%    /usr/local/poudriere/jails/13-0-amd64
+zroot/poudriere/jails/12-3-amd64    2.6T    1.2G    2.6T     0%    /usr/local/poudriere/jails/12-3-amd64
+zroot/usr/ports                     2.6T    834M    2.6T     0%    /usr/ports
+head:/usr/home                      1.8T     26G    1.6T     2%    /usr/home
+head:/var/cache/pkg                 1.8T     26G    1.6T     2%    /var/cache/pkg
+linprocfs                           4.0K    4.0K      0B   100%    /compat/linux/proc
+linsysfs                            4.0K    4.0K      0B   100%    /compat/linux/sys
+devfs                               1.0K    1.0K      0B   100%    /compat/linux/dev
+fdescfs                             1.0K    1.0K      0B   100%    /compat/linux/dev/fd
+tmpfs                                67G    4.0K     67G     0%    /compat/linux/dev/shm
+zroot/var/log on /var/log (zfs, local, nfsv4acls)
+zroot/var/crash on /var/crash (zfs, local, nfsv4acls)
+zroot/tmp on /tmp (zfs, local, nfsv4acls)
+zroot/var/tmp on /var/tmp (zfs, local, nfsv4acls)
+zroot/compute-001 on /compute-001 (zfs, NFS exported, local, nfsv4acls)
+zroot/var/mail on /var/mail (zfs, local, nfsv4acls)
+zroot/var/cache on /var/cache (zfs, local, nfsv4acls)
+zroot/var/audit on /var/audit (zfs, local, nfsv4acls)
+zroot/poudriere/ports/default on /usr/local/poudriere/ports/default (zfs, local, noatime, nfsv4acls)
+zroot/poudriere/jails/13-0-amd64 on /usr/local/poudriere/jails/13-0-amd64 (zfs, local, noatime, nfsv4acls)
+zroot/poudriere/jails/12-3-amd64 on /usr/local/poudriere/jails/12-3-amd64 (zfs, local, noatime, nfsv4acls)
+zroot/usr/ports on /usr/ports (zfs, local, nfsv4acls)
+  pool: zroot
+ state: ONLINE
+config:
+
+	NAME        STATE     READ WRITE CKSUM
+	zroot       ONLINE       0     0     0
+	  mfid0p4   ONLINE       0     0     0
+
+errors: No known data errors
+
+===========================================================
+Trial 1...
+===========================================================
+Testing small array, high cache hit-ratio...
+Filling a 256.00 KiB array 65536 times 1 bytes at a time...
+  256.00 KiB array         1.00 B blocks     12742.00 ms      1285.83 MiB/s
+
+Filling a 256.00 KiB array 65536 times 2 bytes at a time...
+  256.00 KiB array         2.00 B blocks      6371.00 ms      2571.65 MiB/s
+
+Filling a 256.00 KiB array 65536 times 4 bytes at a time...
+  256.00 KiB array         4.00 B blocks      3188.00 ms      5139.27 MiB/s
+
+Filling a 256.00 KiB array 65536 times 8 bytes at a time...
+  256.00 KiB array         8.00 B blocks      1598.00 ms     10252.82 MiB/s
+
+Testing large array, low cache hit-ratio...
+Filling a 2.00 GiB array 8 times 1 bytes at a time...
+    2.00 GiB array         1.00 B blocks     13876.00 ms      1180.74 MiB/s
+
+Filling a 2.00 GiB array 8 times 2 bytes at a time...
+    2.00 GiB array         2.00 B blocks      6694.00 ms      2447.56 MiB/s
+
+Filling a 2.00 GiB array 8 times 4 bytes at a time...
+    2.00 GiB array         4.00 B blocks      3678.00 ms      4454.59 MiB/s
+
+Filling a 2.00 GiB array 8 times 8 bytes at a time...
+    2.00 GiB array         8.00 B blocks      3335.00 ms      4912.74 MiB/s
+
+Writing 32737 blocks of size 4194304 in sequential order...
+Total size = 130948 mebibytes.
+[****************************************************************]
+  127.88 GiB write       4.00 MiB blocks    402779.00 ms       325.12 MiB/s
+
+Reading 32737 blocks of size 4194304 in sequential order...
+Total size = 130948 mebibytes.
+[****************************************************************]
+  127.88 GiB read        4.00 MiB blocks    334379.00 ms       391.62 MiB/s
+
+Writing 32737 blocks of size 4194304 in sequential order...
+Total size = 130948 mebibytes.
+[****************************************************************]
+  127.88 GiB write       4.00 MiB blocks    365161.00 ms       358.61 MiB/s
+
+Reading 32737 blocks of size 4194304 in random order...
+Total size = 130948 mebibytes.
+[****************************************************************]
+  127.88 GiB seek        4.00 MiB blocks   1368081.00 ms        95.72 MiB/s
+
+===========================================================
+Trial 2...
+===========================================================
+Testing small array, high cache hit-ratio...
+Filling a 256.00 KiB array 65536 times 1 bytes at a time...
+  256.00 KiB array         1.00 B blocks     12774.00 ms      1282.61 MiB/s
+
+Filling a 256.00 KiB array 65536 times 2 bytes at a time...
+  256.00 KiB array         2.00 B blocks      6371.00 ms      2571.65 MiB/s
+
+Filling a 256.00 KiB array 65536 times 4 bytes at a time...
+  256.00 KiB array         4.00 B blocks      3189.00 ms      5137.66 MiB/s
+
+Filling a 256.00 KiB array 65536 times 8 bytes at a time...
+  256.00 KiB array         8.00 B blocks      1595.00 ms     10272.10 MiB/s
+
+Testing large array, low cache hit-ratio...
+Filling a 2.00 GiB array 8 times 1 bytes at a time...
+    2.00 GiB array         1.00 B blocks     12875.00 ms      1272.54 MiB/s
+
+Filling a 2.00 GiB array 8 times 2 bytes at a time...
+    2.00 GiB array         2.00 B blocks      6685.00 ms      2450.86 MiB/s
+
+Filling a 2.00 GiB array 8 times 4 bytes at a time...
+    2.00 GiB array         4.00 B blocks      3603.00 ms      4547.32 MiB/s
+
+Filling a 2.00 GiB array 8 times 8 bytes at a time...
+    2.00 GiB array         8.00 B blocks      3337.00 ms      4909.80 MiB/s
+
+Writing 32737 blocks of size 4194304 in sequential order...
+Total size = 130948 mebibytes.
+[****************************************************************]
+  127.88 GiB write       4.00 MiB blocks    368036.00 ms       355.81 MiB/s
+
+Reading 32737 blocks of size 4194304 in sequential order...
+Total size = 130948 mebibytes.
+[****************************************************************]
+  127.88 GiB read        4.00 MiB blocks    327342.00 ms       400.04 MiB/s
+
+Writing 32737 blocks of size 4194304 in sequential order...
+Total size = 130948 mebibytes.
+[****************************************************************]
+  127.88 GiB write       4.00 MiB blocks    360762.00 ms       362.98 MiB/s
+
+Reading 32737 blocks of size 4194304 in random order...
+Total size = 130948 mebibytes.
+[****************************************************************]
+  127.88 GiB seek        4.00 MiB blocks   1097333.00 ms       119.34 MiB/s
+
+===========================================================
+Trial 3...
+===========================================================
+Testing small array, high cache hit-ratio...
+Filling a 256.00 KiB array 65536 times 1 bytes at a time...
+  256.00 KiB array         1.00 B blocks     12834.00 ms      1276.61 MiB/s
+
+Filling a 256.00 KiB array 65536 times 2 bytes at a time...
+  256.00 KiB array         2.00 B blocks      6371.00 ms      2571.65 MiB/s
+
+Filling a 256.00 KiB array 65536 times 4 bytes at a time...
+  256.00 KiB array         4.00 B blocks      3189.00 ms      5137.66 MiB/s
+
+Filling a 256.00 KiB array 65536 times 8 bytes at a time...
+  256.00 KiB array         8.00 B blocks      1595.00 ms     10272.10 MiB/s
+
+Testing large array, low cache hit-ratio...
+Filling a 2.00 GiB array 8 times 1 bytes at a time...
+    2.00 GiB array         1.00 B blocks     12873.00 ms      1272.74 MiB/s
+
+Filling a 2.00 GiB array 8 times 2 bytes at a time...
+    2.00 GiB array         2.00 B blocks      6684.00 ms      2451.23 MiB/s
+
+Filling a 2.00 GiB array 8 times 4 bytes at a time...
+    2.00 GiB array         4.00 B blocks      3602.00 ms      4548.58 MiB/s
+
+Filling a 2.00 GiB array 8 times 8 bytes at a time...
+    2.00 GiB array         8.00 B blocks      3336.00 ms      4911.27 MiB/s
+
+Writing 32737 blocks of size 4194304 in sequential order...
+Total size = 130948 mebibytes.
+[****************************************************************]
+  127.88 GiB write       4.00 MiB blocks    340750.00 ms       384.30 MiB/s
+
+Reading 32737 blocks of size 4194304 in sequential order...
+Total size = 130948 mebibytes.
+[****************************************************************]
+  127.88 GiB read        4.00 MiB blocks    320364.00 ms       408.75 MiB/s
+
+Writing 32737 blocks of size 4194304 in sequential order...
+Total size = 130948 mebibytes.
+[****************************************************************]
+  127.88 GiB write       4.00 MiB blocks    352766.00 ms       371.21 MiB/s
+
+Reading 32737 blocks of size 4194304 in random order...
+Total size = 130948 mebibytes.
+[****************************************************************]
+  127.88 GiB seek        4.00 MiB blocks   1299804.00 ms       100.75 MiB/s
+
+Averages of 3 trials:
+  256.00 KiB array         1.00 B blocks     12783.00 ms      1281.70 MiB/s
+  256.00 KiB array         2.00 B blocks      6371.00 ms      2571.65 MiB/s
+  256.00 KiB array         4.00 B blocks      3188.00 ms      5139.27 MiB/s
+  256.00 KiB array         8.00 B blocks      1596.00 ms     10265.66 MiB/s
+    2.00 GiB array         1.00 B blocks     13208.00 ms      1240.46 MiB/s
+    2.00 GiB array         2.00 B blocks      6687.00 ms      2450.13 MiB/s
+    2.00 GiB array         4.00 B blocks      3627.00 ms      4517.23 MiB/s
+    2.00 GiB array         8.00 B blocks      3336.00 ms      4911.27 MiB/s
+  127.88 GiB write       4.00 MiB blocks    370521.00 ms       353.42 MiB/s
+  127.88 GiB read        4.00 MiB blocks    327361.00 ms       400.02 MiB/s
+  127.88 GiB rewrite     4.00 MiB blocks    359563.00 ms       364.19 MiB/s
+  127.88 GiB seek        4.00 MiB blocks   1255072.00 ms       104.34 MiB/s
