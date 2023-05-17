@@ -180,7 +180,8 @@ int     main(int argc, char *argv[])
     */
     
     /* Temporary hack */
-    fp = popen("sysctl hw.physmem", "r");
+    // Shows 3.5 GiB on M1 fp = popen("sysctl hw.physmem", "r");
+    fp = popen("sysctl hw.memsize", "r");
     fscanf(fp, "%s %lu", discard, &mem_size_ul);
     mem_size = mem_size_ul;
     pclose(fp);
