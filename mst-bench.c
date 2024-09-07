@@ -243,6 +243,7 @@ int     main(int argc, char *argv[])
 #ifdef __FreeBSD__
     puts("\nDisk hardware:\n");
     system("geom disk list");
+    puts("Running \"df\"...");
     system("df | fgrep -q /dev/mfid && mfiutil show adapter");
     putchar('\n');
     system("df | fgrep -q /dev/mfid && mfiutil show config");
